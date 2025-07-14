@@ -14,10 +14,29 @@ import { FileUpload } from "@/components/ui/file-upload";
 
 export function AnalyzeResumeModal() {
   const [files, setFiles] = useState<File[]>([]);
-  const handleFileUpload = (files: File[]) => {
-    setFiles(files);
-    console.log(files);
+  const [role, setRole] = useState<string>("");
+  const handleData = async () => {
+    const formData = new FormData();
+    formData.append("role", role);
+    if (files.length > 0) {
+      formData.append("file", files[0]);
+    }
+    console.log("Submitting data:", { role, files });
+    try {
+      const response = await fetch("/api/submit", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error("Failed to submit resume analysis");
+      }
+      const data = await response.json();
+      console.log("Resume analysis submitted successfully:", data);
+    } catch (error) {
+      console.log("Error submitting resume analysis:", error);
+    }
   };
+
   return (
     <div className="py-15 flex items-center justify-center">
       <Modal>
@@ -36,35 +55,37 @@ export function AnalyzeResumeModal() {
         </ModalTrigger>
 
         <ModalBody>
-          <form action="">
-            <ModalContent>
-              <h4 className="text-lg md:text-2xl text-purple-100  font-bold text-center mb-8">
-                🧠 Analyze Your Resume with AI 🤖
-              </h4>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="role"
-                  className="text-purple-100 text-sm mb-0.5 font-medium"
-                >
-                  Role
-                </label>
-                <input
-                  name="role"
-                  className="bg-neutral-900 rounded-md px-2 py-1 text-white text-sm mb-1.5 border border-dashed border-purple-300"
-                  placeholder="e.g. Software Engineer, Data Scientist"
-                />
-              </div>
-              <div className="w-full max-w-4xl mx-auto min-h-80 border border-dashed border-purple-300 bg-neutral-900 rounded-lg">
-                <FileUpload onChange={handleFileUpload} />
-              </div>
-            </ModalContent>
-            <ModalFooter className="gap-4">
-              <CancelButton />
-              <button className="cursor-pointer bg-purple-400 text-black  text-sm px-2 py-1 rounded-md border border-black w-28 hover:scale-105 transition duration-200">
-                Start
-              </button>
-            </ModalFooter>
-          </form>
+          <ModalContent>
+            <h4 className="text-lg md:text-2xl text-purple-100  font-bold text-center mb-8">
+              🧠 Analyze Your Resume with AI 🤖
+            </h4>
+            <div className="flex flex-col">
+              <label
+                htmlFor="role"
+                className="text-purple-100 text-sm mb-0.5 font-medium"
+              >
+                Role
+              </label>
+              <input
+                id="role"
+                className="bg-neutral-900 rounded-md px-2 py-1 text-white text-sm mb-1.5 border border-dashed border-purple-300"
+                placeholder="e.g. Software Engineer, Data Scientist"
+                onChange={(e) => setRole(e.target.value)}
+              />
+            </div>
+            <div className="w-full max-w-4xl mx-auto min-h-80 border border-dashed border-purple-300 bg-neutral-900 rounded-lg">
+              <FileUpload onChange={(files) => setFiles(files)} />
+            </div>
+          </ModalContent>
+          <ModalFooter className="gap-4">
+            <CancelButton />
+            <button
+              className="cursor-pointer bg-purple-400 text-black  text-sm px-2 py-1 rounded-md border border-black w-28 hover:scale-105 transition duration-200"
+              onClick={handleData}
+            >
+              Start
+            </button>
+          </ModalFooter>
         </ModalBody>
       </Modal>
     </div>

@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/genai": "^1.9.0",
     "@react-three/fiber": "^9.2.0",
     "@tabler/icons-react": "^3.34.0",
     "@types/three": "^0.178.0",
     "clsx": "^2.1.1",
     "motion": "^12.23.1",
     "next": "15.3.5",
+    "pdf-parse": "^1.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.8",
@@ -25,6 +27,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pdf-parse": "^1.1.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
