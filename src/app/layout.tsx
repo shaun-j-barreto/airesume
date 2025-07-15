@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Sora } from "next/font/google";
 import "./globals.css";
+import { ResumeProvider } from "@/context/ResumeContext";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -24,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jakarta.variable} ${sora.variable}  antialiased`}>{children}</body>
+      <body className={`${jakarta.variable} ${sora.variable}  antialiased`}>
+        <ResumeProvider>{children}</ResumeProvider>
+      </body>
     </html>
   );
 }

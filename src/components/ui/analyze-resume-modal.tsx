@@ -11,10 +11,14 @@ import {
 } from "../ui/animated-modal";
 import Image from "next/image";
 import { FileUpload } from "@/components/ui/file-upload";
+import { useResumeContext } from "@/context/ResumeContext";
+import { useRouter } from "next/navigation";
 
 export function AnalyzeResumeModal() {
   const [files, setFiles] = useState<File[]>([]);
   const [role, setRole] = useState<string>("");
+  const { setData } = useResumeContext();
+  const router = useRouter();
   const handleData = async () => {
     const formData = new FormData();
     formData.append("role", role);
@@ -22,6 +26,7 @@ export function AnalyzeResumeModal() {
       formData.append("file", files[0]);
     }
     console.log("Submitting data:", { role, files });
+    router.push("/results");
     try {
       const response = await fetch("/api/submit", {
         method: "POST",
@@ -29,9 +34,11 @@ export function AnalyzeResumeModal() {
       });
       if (!response.ok) {
         throw new Error("Failed to submit resume analysis");
+      } else {
+        const data = await response.json();
+        setData({ role: data.role, fileContent: data.fileContent });
+        console.log("Resume analysis submitted successfully:", data);
       }
-      const data = await response.json();
-      console.log("Resume analysis submitted successfully:", data);
     } catch (error) {
       console.log("Error submitting resume analysis:", error);
     }
@@ -40,9 +47,9 @@ export function AnalyzeResumeModal() {
   return (
     <div className="py-15 flex items-center justify-center">
       <Modal>
-        <ModalTrigger className="bg-[#7e22ce]/90 hover:bg-black/20 hover:scale-105 transition duration-400  px-6 py-2 text-xl cursor-pointer font-medium rounded-md border border-[#d8b4fe]/50 shadow-md flex justify-center group/modal-btn z-80">
-          <span className=" text-(--color-text-primary) group-hover/modal-btn:translate-x-70 text-center transition duration-500">
-            📄 Analyze Resume
+        <ModalTrigger className="bg-purple-200 hover:bg-purple-950  transition duration-400  px-6 py-2 text-xl cursor-pointer font-medium rounded-md border border-purple-100/50 shadow-md flex justify-center group/modal-btn z-80">
+          <span className=" text-purple-900 font-medium group-hover/modal-btn:translate-x-70 text-center transition duration-500">
+            🤖 Analyze Resume
           </span>
           <div className="-translate-x-70 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 z-60">
             <Image
