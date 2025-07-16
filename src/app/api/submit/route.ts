@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const buffer = await file.arrayBuffer();
     const rawData = Buffer.from(buffer);
     const fileData = await pdfparse(rawData);
-    console.log("File content:", fileData.text);
+    // console.log("File content:", fileData.text);
 
     const prompt = resumePrompt(role, fileData.text);
 
@@ -20,12 +20,37 @@ export async function POST(request: Request) {
       model: "gemini-2.5-flash",
       contents: prompt,
     });
-    console.log("AI response:", response.text);
+
+    const aiText = response.text || "";
+
+    // console.log("AI response:", response.text);
+    const scoreMatch = aiText.match(/{{SCORE_START}}([\s\S]*?){{SCORE_END}}/);
+
+    const strengthMatch = aiText.match(
+      /{{STRENGHTS_START}}([\s\S]*?){{STRENGHTS_END}}/
+    );
+    const missingMatch = aiText.match(
+      /{{MISSING_START}}([\s\S]*?){{MISSING_END}}/
+    );
+    const improvementMatch = aiText.match(
+      /{{IMPROVEMENT_START}}([\s\S]*?){{IMPROVEMENT_END}}/
+    );
+    const atsMatch = aiText.match(/{{ATS_START}}([\s\S]*?){{ATS_END}}/);
+
+    const strengths = strengthMatch ? strengthMatch[1].trim() : "";
+    const missing = missingMatch ? missingMatch[1].trim() : "";
+    const improvement = improvementMatch ? improvementMatch[1].trim() : "";
+    const ats = atsMatch ? atsMatch[1].trim() : "";
+    const score = scoreMatch ? scoreMatch[1].trim() : "";
 
     return NextResponse.json({
       message: "Resume analysis submitted successfully.",
       role,
-      fileContent: response.text,
+      strengths,
+      missing,
+      improvement,
+      ats,
+      score,
     });
   } catch (error) {
     console.error("Error processing resume analysis:", error);
@@ -112,22 +137,22 @@ Score: x (give the score directly as a number. dont use any subheading or text b
 
 🔍 Key Strengths
 {{STRENGHTS_START}}
-(all key strengths will go here)
+(all key strengths will go here. use 🔍 instead of the default bullet point)
 {{STRENGHTS_END}}
 
 ⚠️ Missing or Weak Areas
 {{MISSING_START}}
-(all missing or weak areas will go here)
+(all missing or weak areas will go here. use ⚠️ instead of the default bullet point)
 {{MISSING_END}}
 
 📈 Improvement Suggestions
 {{IMPROVEMENT_START}}
-(all suggestions for improvement will go here)
+(all suggestions for improvement will go here. use 📈 instead of the default bullet point)
 {{IMPROVEMENT_END}}
 
 📋 ATS Optimization Tips
 {{ATS_START}}
-(all ATS optimization tips will go here)
+(all ATS optimization tips will go here. use 📋 instead of the default bullet point)
 {{ATS_END}}
 ---
 Only use the resume content provided. Do not assume anything extra.

@@ -10,12 +10,17 @@ import {
 
 type ResumeData = {
   role: string;
-  fileContent: string;
+  strenghts: string;
+  missing: string;
+  improvement: string;
+  ats: string;
+  score: string;
 };
 
 type ResumeContextType = {
   data: ResumeData | undefined;
   setData: (data: ResumeData) => void;
+  clearData: () => void;
 };
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
@@ -24,19 +29,24 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
   const [data, setDataState] = useState<ResumeData | undefined>();
 
   useEffect(() => {
-    const stored = localStorage.getItem("resume-data");
+    const stored = sessionStorage.getItem("resume-data");
     if (stored) {
       setDataState(JSON.parse(stored));
     }
   }, []);
 
   const setData = (data: ResumeData) => {
-    localStorage.setItem("resume-data", JSON.stringify(data));
+    sessionStorage.setItem("resume-data", JSON.stringify(data));
     setDataState(data);
   };
 
+  const clearData = () => {
+    sessionStorage.removeItem("resume-data");
+    setDataState(undefined);
+  };
+
   return (
-    <ResumeContext.Provider value={{ data, setData }}>
+    <ResumeContext.Provider value={{ data, setData, clearData }}>
       {children}
     </ResumeContext.Provider>
   );

@@ -17,8 +17,8 @@ import { useRouter } from "next/navigation";
 export function AnalyzeResumeModal() {
   const [files, setFiles] = useState<File[]>([]);
   const [role, setRole] = useState<string>("");
-  const { setData } = useResumeContext();
   const router = useRouter();
+  const { setData } = useResumeContext();
   const handleData = async () => {
     const formData = new FormData();
     formData.append("role", role);
@@ -36,7 +36,14 @@ export function AnalyzeResumeModal() {
         throw new Error("Failed to submit resume analysis");
       } else {
         const data = await response.json();
-        setData({ role: data.role, fileContent: data.fileContent });
+        setData({
+          role: data.role,
+          strenghts: data.strengths,
+          missing: data.missing,
+          improvement: data.improvement,
+          ats: data.ats,
+          score: data.score,
+        });
         console.log("Resume analysis submitted successfully:", data);
       }
     } catch (error) {
@@ -86,12 +93,7 @@ export function AnalyzeResumeModal() {
           </ModalContent>
           <ModalFooter className="gap-4">
             <CancelButton />
-            <button
-              className="cursor-pointer bg-purple-400 text-black  text-sm px-2 py-1 rounded-md border border-black w-28 hover:scale-105 transition duration-200"
-              onClick={handleData}
-            >
-              Start
-            </button>
+            <StartButton handleData={handleData} />
           </ModalFooter>
         </ModalBody>
       </Modal>
@@ -109,6 +111,24 @@ function CancelButton() {
       className="cursor-pointer px-2 py-1 bg-transparent text-(--color-text-primary) transition duration-200 hover:scale-105 border border-purple-300 rounded-md text-sm w-28"
     >
       Cancel
+    </button>
+  );
+}
+
+function StartButton({ handleData }: { handleData: () => void }) {
+  const { setOpen } = useModal();
+  const { clearData } = useResumeContext();
+
+  return (
+    <button
+      className="cursor-pointer bg-purple-400 text-black  text-sm px-2 py-1 rounded-md border border-black w-28 hover:scale-105 transition duration-200"
+      onClick={() => {
+        clearData();
+        handleData();
+        setOpen(false);
+      }}
+    >
+      Start
     </button>
   );
 }

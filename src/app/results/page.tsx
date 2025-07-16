@@ -26,7 +26,19 @@ export default function Results() {
         <div className="space-y-4 ">
           <h2 className="text-lg font-semibold">Role: {data.role}</h2>
           <p className="whitespace-pre-wrap text-sm text-purple-100 ">
-            File Content: {data.fileContent}
+            {data.score}
+          </p>
+          <p className="whitespace-pre-wrap text-sm text-purple-100 ">
+            {data.strenghts}
+          </p>
+          <p className="whitespace-pre-wrap text-sm text-purple-100 ">
+            {data.missing}
+          </p>
+          <p className="whitespace-pre-wrap text-sm text-purple-100 ">
+            {data.improvement}
+          </p>
+          <p className="whitespace-pre-wrap text-sm text-purple-100 ">
+            {data.ats}
           </p>
         </div>
       ) : (
