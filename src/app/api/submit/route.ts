@@ -25,7 +25,6 @@ export async function POST(request: Request) {
 
     // console.log("AI response:", response.text);
     const scoreMatch = aiText.match(/{{SCORE_START}}([\s\S]*?){{SCORE_END}}/);
-
     const strengthMatch = aiText.match(
       /{{STRENGHTS_START}}([\s\S]*?){{STRENGHTS_END}}/
     );
@@ -37,11 +36,33 @@ export async function POST(request: Request) {
     );
     const atsMatch = aiText.match(/{{ATS_START}}([\s\S]*?){{ATS_END}}/);
 
-    const strengths = strengthMatch ? strengthMatch[1].trim() : "";
-    const missing = missingMatch ? missingMatch[1].trim() : "";
-    const improvement = improvementMatch ? improvementMatch[1].trim() : "";
-    const ats = atsMatch ? atsMatch[1].trim() : "";
+    const strengthText = strengthMatch ? strengthMatch[1].trim() : "";
+    const missingText = missingMatch ? missingMatch[1].trim() : "";
+    const improvementText = improvementMatch ? improvementMatch[1].trim() : "";
+    const atsText = atsMatch ? atsMatch[1].trim() : "";
     const score = scoreMatch ? scoreMatch[1].trim() : "";
+
+    const strengths = strengthText
+      .split("🔍")
+      .map((point) => point.trim())
+      .filter((point) => point.length > 0);
+
+    const missing = missingText
+      .split("⚠️")
+      .map((point) => point.trim())
+      .filter((point) => point.length > 0);
+
+    const improvement = improvementText
+      .split("📈")
+      .map((point) => point.trim())
+      .filter((point) => point.length > 0);
+
+    const ats = atsText
+      .split("📋")
+      .map((point) => point.trim())
+      .filter((point) => point.length > 0);
+
+    console.log(strengths, missing, improvement, ats, score);
 
     return NextResponse.json({
       message: "Resume analysis submitted successfully.",
@@ -132,25 +153,25 @@ Avoid graphics, logos, or complex formatting that may confuse ATS parsers.
 ---
 🔎 Your output should be structured as follows:
 {{SCORE_START}}
-Score: x (give the score directly as a number. dont use any subheading or text before the score nor write it as "x/100" or "x out of 100" or anything like that, just give the score as a number)
+(give the score directly as a number. dont use any subheading or text before the score nor write it as "x/100" or "x out of 100" or anything like that, just give the score as a number)
 {{SCORE_END}}
 
-🔍 Key Strengths
+1. Key Strengths
 {{STRENGHTS_START}}
 (all key strengths will go here. use 🔍 instead of the default bullet point)
 {{STRENGHTS_END}}
 
-⚠️ Missing or Weak Areas
+2. Missing or Weak Areas
 {{MISSING_START}}
 (all missing or weak areas will go here. use ⚠️ instead of the default bullet point)
 {{MISSING_END}}
 
-📈 Improvement Suggestions
+3. Improvement Suggestions
 {{IMPROVEMENT_START}}
 (all suggestions for improvement will go here. use 📈 instead of the default bullet point)
 {{IMPROVEMENT_END}}
 
-📋 ATS Optimization Tips
+4. ATS Optimization Tips
 {{ATS_START}}
 (all ATS optimization tips will go here. use 📋 instead of the default bullet point)
 {{ATS_END}}

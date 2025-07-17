@@ -10,11 +10,11 @@ import {
 
 type ResumeData = {
   role: string;
-  strenghts: string;
-  missing: string;
-  improvement: string;
-  ats: string;
-  score: string;
+  strenghts: string[];
+  missing: string[];
+  improvement: string[];
+  ats: string[];
+  score: number;
 };
 
 type ResumeContextType = {
