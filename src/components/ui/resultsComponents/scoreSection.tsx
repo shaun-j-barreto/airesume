@@ -42,7 +42,7 @@ export function ScoreSection() {
   };
 
   return (
-    <div className="flex flex-row bg-[#1F012E] border border-white/10 justify-evenly my-4  m-auto rounded-xl overflow-hidden">
+    <div className="flex flex-row bg-[#160120] border border-white/10 justify-evenly my-4  m-auto rounded-xl overflow-hidden">
       <div className="relative w-full h-72">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
