@@ -8,8 +8,8 @@ import {
   ModalFooter,
   ModalTrigger,
   useModal,
-} from "../ui/animated-modal";
-import Image from "next/image";
+} from "./animated-modal";
+import { FileUp } from "lucide-react";
 import { FileUpload } from "@/components/ui/file-upload";
 import { useResumeContext } from "@/context/ResumeContext";
 import { useRouter } from "next/navigation";
@@ -43,6 +43,7 @@ export function AnalyzeResumeModal() {
           improvement: data.improvement,
           ats: data.ats,
           score: data.score,
+          scoreJustification: data.scoreJustification,
         });
         console.log("Resume analysis submitted successfully:", data);
       }
@@ -59,19 +60,14 @@ export function AnalyzeResumeModal() {
             🤖 Analyze Resume
           </span>
           <div className="-translate-x-70 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 z-60">
-            <Image
-              src="/assets/images/upload.png"
-              alt="upload"
-              width={30}
-              height={30}
-            />
+            <FileUp />
           </div>
         </ModalTrigger>
 
         <ModalBody>
           <ModalContent>
             <h4 className="text-lg md:text-2xl text-purple-100  font-bold text-center mb-8">
-              🧠 Analyze Your Resume with AI 🤖
+              🧠 Analyze Your Resume with AI
             </h4>
             <div className="flex flex-col">
               <label

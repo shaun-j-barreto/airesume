@@ -15,6 +15,7 @@ type ResumeData = {
   improvement: string[];
   ats: string[];
   score: number;
+  scoreJustification: string;
 };
 
 type ResumeContextType = {

@@ -1,6 +1,6 @@
 "use client";
 
-import { AnalyzeResumeModal } from "@/components/ui/analyze-resume-modal";
+import { AnalyzeResumeModal } from "@/components/ui/resumeModal/analyze-resume-modal";
 import { Boxes } from "@/components/ui/background-boxes";
 import { cn } from "@/lib/utils";
 
