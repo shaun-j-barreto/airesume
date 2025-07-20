@@ -7,7 +7,7 @@ export function StrengthSection() {
   const { data } = useResumeContext();
 
   return (
-    <div className="bg-[#160120] border border-white/10 rounded-xl p-4">
+    <div className="bg-[#100120] border border-white/10 rounded-xl p-4">
       {/* Section Header */}
       <div className="flex items-center mb-6 w-full max-w-3xl m-auto">
         <div className="bg-purple-300/10 rounded-full p-2 border border-purple-300/20 shadow-md flex items-center justify-center">
