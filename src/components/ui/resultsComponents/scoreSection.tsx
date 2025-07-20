@@ -7,24 +7,96 @@ function GradientDefs() {
   return (
     <>
       <defs>
+        <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <linearGradient id="goldGradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#fff89e" />
+          <stop offset="100%" stopColor="#facc15" />
+        </linearGradient>
+
         <linearGradient id="greenGradient" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#4ade80" />
-          <stop offset="100%" stopColor="#16a34a" />
+          <stop offset="0%" stopColor="#5fff9e" />
+          <stop offset="100%" stopColor="#00ff6a" />
         </linearGradient>
 
         <linearGradient id="orangeGradient" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#fbbf24" />
-          <stop offset="100%" stopColor="#d97706" />
+          <stop offset="0%" stopColor="#ffd166" />
+          <stop offset="100%" stopColor="#ff8800" />
         </linearGradient>
 
         <linearGradient id="redGradient" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#f87171" />
-          <stop offset="100%" stopColor="#b91c1c" />
+          <stop offset="0%" stopColor="#ff6b6b" />
+          <stop offset="100%" stopColor="#ff1f1f" />
         </linearGradient>
       </defs>
     </>
   );
 }
+
+function getScoreStyle(score: number) {
+  if (score === 100) {
+    return {
+      background: "linear-gradient(90deg, #fef08a, #facc15)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      filter: "drop-shadow(0 0 1px #fde047)",
+    };
+  } else if (score >= 80) {
+    return {
+      background: "linear-gradient(90deg, #5fff9e, #00ff6a)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      filter: "drop-shadow(0 0 1px #22c55e)",
+    };
+  } else if (score >= 60) {
+    return {
+      background: "linear-gradient(90deg, #ffd166, #ff8800)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      filter: "drop-shadow(0 0 1px #facc15)",
+    };
+  } else {
+    return {
+      background: "linear-gradient(90deg, #ff6b6b, #ff1f1f)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      filter: "drop-shadow(0 0 1px #ef4444)",
+    };
+  }
+}
+
+const scoreBadges = [
+  {
+    label: "Perfect: 100",
+    bg: "bg-yellow-500/10",
+    text: "text-yellow-200",
+    border: "border-yellow-300/20",
+  },
+  {
+    label: "Good: 80+",
+    bg: "bg-green-500/10",
+    text: "text-green-200",
+    border: "border-green-300/20",
+  },
+  {
+    label: "Satisfactory: 60+",
+    bg: "bg-orange-500/5",
+    text: "text-orange-200",
+    border: "border-orange-300/20",
+  },
+  {
+    label: "Bad: 60-",
+    bg: "bg-red-500/10",
+    text: "text-red-200",
+    border: "border-red-300/20",
+  },
+];
 export function ScoreSection() {
   const { data } = useResumeContext();
   const score = data?.score ?? 0;
@@ -36,59 +108,76 @@ export function ScoreSection() {
   ];
 
   const getGradientId = () => {
+    if (percentage == 100) return "goldGradient";
     if (percentage >= 80) return "greenGradient";
     if (percentage >= 60) return "orangeGradient";
     return "redGradient";
   };
 
   return (
-    <div className="flex flex-row bg-[#160120] border border-white/10 justify-evenly my-4  m-auto rounded-xl overflow-hidden">
-      <div className="relative w-full h-72">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <GradientDefs />
+    <div className="bg-[#160120] border border-white/10 rounded-xl p-6 flex flex-row">
+      <div className=" justify-evenly my-5  m-auto rounded-xl overflow-hidden">
+        <div className="relative w-[300px] h-[300px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <GradientDefs />
 
-            <Pie
-              data={chartData}
-              cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={100}
-              startAngle={90}
-              endAngle={450}
-              dataKey="value"
-              stroke="none"
-            >
-              <Cell fill={`url(#${getGradientId()})`} />
-              <Cell fill="#2c2c2cbd" />
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span
-            className={`${
-              score >= 80
-                ? "text-green-500"
-                : score >= 60
-                ? "text-yellow-500"
-                : "text-red-500"
-            } text-6xl font-bold `}
-          >
-            {score}
-          </span>
+              <Pie
+                data={chartData}
+                cx="50%"
+                cy="50%"
+                innerRadius={100}
+                outerRadius={150}
+                startAngle={90}
+                endAngle={450}
+                dataKey="value"
+                stroke="none"
+                filter="url(#neon-glow)"
+              >
+                <Cell fill={`url(#${getGradientId()})`} />
+                <Cell fill="#2a1b3d	" />
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-7xl font-black" style={getScoreStyle(score)}>
+              {score}
+            </span>
+          </div>
         </div>
       </div>
-      <div className="flex flex-col h-[100%] bg-green-600  ml-4">
-        <h1 className="text-3xl font-semibold text-purple-100 mt-4">
-          Overall Resume Score
+      <div className="flex flex-col gap-4 p-6 rounded-xl bg-purple-200/5  ml-4 max-w-3xl">
+        <h1 className="text-4xl font-bold text-purple-200  tracking-wide opacity-90">
+          Overall Resume:
+          <span
+            className=" text-4xl font-extrabold ml-1  py-1 px-4 rounded-md tracking-wide"
+            style={getScoreStyle(score)}
+          >
+            {score === 100
+              ? "Perfect"
+              : score >= 80
+              ? "Good"
+              : score >= 60
+              ? "Satisfactory"
+              : "Bad"}
+          </span>
         </h1>
-        <p className="text-sm text-purple-300">
-          This score reflects how well your resume aligns with ATS standards for
-          the target role.
-        </p>
-        <p className="text-sm text-purple-300 mt-2">
-          {data?.scoreJustification}
-        </p>
+
+        <div className="bg-purple-300/5 text-purple-100  p-4 rounded-md  shadow-sm">
+          <p className="text-md leading-relaxed whitespace-pre-line">
+            {data?.scoreJustification}
+          </p>
+        </div>
+        <div className="flex flex-row gap-5 flex-wrap">
+          {scoreBadges.map((badge, index) => (
+            <div
+              key={index}
+              className={`${badge.bg} ${badge.text} border ${badge.border} shadow-md py-1 px-3 rounded-full`}
+            >
+              {badge.label}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

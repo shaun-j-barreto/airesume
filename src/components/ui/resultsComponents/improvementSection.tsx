@@ -23,7 +23,7 @@ export function ImprovementSection() {
         {data?.improvement.map((point: string, index: number) => (
           <div
             key={index}
-            className="flex flex-row gap-3 bg-blue-300/5 w-full max-w-3xl m-auto p-4 rounded-lg"
+            className="flex flex-row gap-3 bg-blue-300/5 hover:bg-blue-300/10 w-full max-w-3xl m-auto p-4 rounded-lg"
           >
             <div className="bg-blue-300/10 rounded-full p-2 flex items-center justify-center h-fit">
               <Lightbulb size={24} className="text-blue-300" />

@@ -6,12 +6,7 @@ import { cn } from "@/lib/utils";
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
   const rows = new Array(150).fill(1);
   const cols = new Array(100).fill(1);
-  const colors = [
-    "#9333ea", // Purple
-    "#6d28d9", // Dark Purple
-    "#4c1d95", // Deep Purple
-    "#1e0e3e", // Night Purple (near-black)
-  ];
+  const colors = ["#9333ea", "#6d28d9", "#4c1d95", "#1e0e3e"];
   const getRandomColor = () => {
     return colors[Math.floor(Math.random() * colors.length)];
   };

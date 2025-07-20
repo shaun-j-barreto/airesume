@@ -28,15 +28,15 @@ export default function Results() {
           Analyzing your resume...
         </p>
       ) : data ? (
-        <div className="space-y-4 ">
+        <div className="space-y-10 ">
           <h2 className="text-lg font-semibold">Role: {data.role}</h2>
           <ScoreSection />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="space-y-10">
               <StrengthSection />
               <ImprovementSection />
             </div>
-            <div className="space-y-4">
+            <div className="space-y-10">
               <MissingSection />
               <AtsSection />
             </div>
