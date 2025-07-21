@@ -55,9 +55,9 @@ export function AnalyzeResumeModal() {
   };
 
   return (
-    <div className="py-15 flex items-center justify-center">
+    <div className="md:py-15 py-5 flex items-center justify-center">
       <Modal>
-        <ModalTrigger className="bg-violet-300 hover:bg-neutral-900/50  transition duration-400  px-6 py-2 text-2xl cursor-pointer font-medium rounded-md border border-purple-500/20 shadow-md flex justify-center group/modal-btn z-80">
+        <ModalTrigger className="bg-violet-300 hover:bg-neutral-900/50  transition duration-400  md:px-6 px-4 py-2  text-md md:text-2xl cursor-pointer font-medium rounded-md border border-purple-500/20 shadow-md flex justify-center group/modal-btn z-80">
           <span className=" text-black font-semibold group-hover/modal-btn:-translate-y-70 text-center transition duration-500">
             Analyze Resume
           </span>
@@ -68,7 +68,7 @@ export function AnalyzeResumeModal() {
 
         <ModalBody>
           <ModalContent>
-            <h4 className="text-lg md:text-2xl text-purple-100  font-bold text-center mb-8">
+            <h4 className="text-xl md:text-2xl text-purple-100  font-bold text-center md:mb-8 mb-4 mt-2">
               🧠 Analyze Your Resume with AI
             </h4>
             <div className="flex flex-col">
@@ -80,7 +80,7 @@ export function AnalyzeResumeModal() {
               </label>
               <input
                 id="role"
-                className="bg-neutral-900 rounded-md px-2 py-1 text-white text-sm mb-1.5 border border-dashed border-purple-300"
+                className="bg-neutral-900 rounded-md px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-dashed border-purple-300"
                 placeholder="e.g. Software Engineer, Data Scientist"
                 onChange={(e) => setRole(e.target.value)}
               />
