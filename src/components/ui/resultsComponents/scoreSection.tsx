@@ -115,7 +115,7 @@ export function ScoreSection() {
   };
 
   return (
-    <div className="bg-[#100120] border border-white/10 rounded-xl p-6 flex flex-row">
+    <div className="bg-[#100120] hover:bg-purple-950/25 transition ease-in-out duration-400 border border-white/10 rounded-xl p-6 flex flex-row">
       <div className=" justify-evenly my-5  m-auto rounded-xl overflow-hidden">
         <div className="relative w-[300px] h-[300px]">
           <ResponsiveContainer width="100%" height="100%">

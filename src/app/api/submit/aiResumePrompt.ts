@@ -88,6 +88,53 @@ Include both acronyms and full terms, e.g., “Certified Public Accountant (CPA)
 Save the resume as a PDF or DOCX file without headers/footers.
 Avoid graphics, logos, or complex formatting that may confuse ATS parsers.
 
+6. 🔧 Skill Analysis
+Analyze the resume content and extract individual hard skills (e.g., JavaScript, React, Docker) and soft skills (e.g., Communication, Leadership) that are clearly demonstrated through projects, work experience, or achievements.
+For each skill you identify, evaluate and assign a score out of 100 based on the depth and strength of evidence provided in the resume. This score should reflect how confidently the candidate has shown that skill (not just whether it is mentioned, but how well it is backed up).
+
+Instructions:
+Do not include visual elements or charts. Only list the skills and scores in plain text.
+Focus only on skills explicitly demonstrated or strongly implied by context (projects, results, job roles, responsibilities).
+Ignore skills that are only passively mentioned in the resume with no evidence or usage context.
+
+Score the skills realistically:
+90–100: Expert-level mastery, used extensively in key projects or roles.
+70–89: Strong proficiency, consistently applied across experiences.
+50–69: Moderate exposure or usage in one or two areas.
+<50: Mentioned, but little to no demonstrated application.
+
+Include at least 4–6 skills, combining technical and soft skills when possible.
+
+Format your output as plain bullet points, like: (just for an example, do not use these exact skills)
+🔧React.js: 82
+🔧Node.js: 75
+🔧Communication: 68
+🔧Docker: 55
+🔧Leadership: 60
+
+🔒 Important:
+Only rate skills that are supported by real usage or achievements in the resume.
+
+Be concise and objective. Do not add explanations, summaries, or section titles — only the skill and its score.
+
+7. 🧰 Skill Distribution
+Analyze the resume content and categorize all mentioned skills into the following four groups:
+Technical Skills (e.g., programming languages, tools, frameworks, systems)
+Soft Skills (e.g., communication, teamwork, leadership)
+Industry Knowledge (e.g., domain-specific knowledge, processes, methodologies)
+Certifications (formal certifications, licenses, or training programs)
+Determine what percentage of the resume content is focused on each of these categories. Base the percentages on actual content — such as mentions, emphasis, and context of usage — and ensure the total equals 100%.
+
+Output Format:
+Only use plain bullet points with the emoji 🧰, followed by the category name and a number (no % sign). Do not add titles, extra text, or explanation.
+
+Example Output (do not copy values below, just the format):
+🧰Technical Skills: 40
+🧰Soft Skills: 30
+🧰Industry Knowledge: 20
+🧰Certifications: 10
+
+Be objective. Use full resume context to derive accurate skill proportions.
 ---
 🔎 Your output should be structured as follows:
 {{SCORE_START}}
@@ -97,6 +144,14 @@ Avoid graphics, logos, or complex formatting that may confuse ATS parsers.
 {{SCORE_JUSTIFICATION_START}}  
 (Brief explanation of how the score was derived — mention strengths and what caused deductions)  
 {{SCORE_JUSTIFICATION_END}}
+
+{{SKILLS_ANALYSIS_START}}
+(all skills and their scores will go here. use 🔧 instead of the default bullet point)
+{{SKILLS_ANALYSIS_END}}
+
+{{SKILL_DISTRIBUTION_START}}
+(all skill distribution categories and their percentages will go here. use 🧰 instead of the default bullet point)
+{{SKILL_DISTRIBUTION_END}}
 
 1. Key Strengths
 {{STRENGHTS_START}}
@@ -133,6 +188,8 @@ ATS Optimization Tips inside {{ATS_START}} ... {{ATS_END}}
 The score must appear only inside {{SCORE_START}} ... {{SCORE_END}} as a number.
 
 The score justification must be within {{SCORE_JUSTIFICATION_START}} ... {{SCORE_JUSTIFICATION_END}}
+
+The skills analysis must be within {{SKILLS_ANALYSIS_START}} ... {{SKILLS_ANALYSIS_END}}
 
 ---
 Only use the resume content provided. Do not assume anything extra.

@@ -34,6 +34,10 @@ export async function POST(request: Request) {
       missingMatch: /{{MISSING_START}}([\s\S]*?){{MISSING_END}}/,
       improvementMatch: /{{IMPROVEMENT_START}}([\s\S]*?){{IMPROVEMENT_END}}/,
       atsMatch: /{{ATS_START}}([\s\S]*?){{ATS_END}}/,
+      skillsAnalysisMatch:
+        /{{SKILLS_ANALYSIS_START}}([\s\S]*?){{SKILLS_ANALYSIS_END}}/,
+      skillDistributionMatch:
+        /{{SKILL_DISTRIBUTION_START}}([\s\S]*?){{SKILL_DISTRIBUTION_END}}/,
     };
 
     const matches = Object.fromEntries(
@@ -46,11 +50,17 @@ export async function POST(request: Request) {
     const atsText = extractSection(matches.atsMatch);
     const score = extractSection(matches.scoreMatch);
     const scoreJustification = extractSection(matches.scoreJustificationMatch);
+    const skillsAnalysisText = extractSection(matches.skillsAnalysisMatch);
+    const skillDistributionText = extractSection(
+      matches.skillDistributionMatch
+    );
 
     const strengths = splitPoints(strengthText, "🔍");
     const missing = splitPoints(missingText, "⚠️");
     const improvement = splitPoints(improvementText, "📈");
     const ats = splitPoints(atsText, "📋");
+    const skillsAnalysis = parseSkillsAnalysis(skillsAnalysisText);
+    const skillDistribution = parseSkillDistribution(skillDistributionText);
 
     console.log(
       strengths,
@@ -58,7 +68,9 @@ export async function POST(request: Request) {
       improvement,
       ats,
       score,
-      scoreJustification
+      scoreJustification,
+      skillsAnalysis,
+      skillDistribution
     );
 
     return NextResponse.json({
@@ -70,6 +82,8 @@ export async function POST(request: Request) {
       ats,
       score,
       scoreJustification,
+      skillsAnalysis,
+      skillDistribution,
     });
   } catch (error) {
     console.error("Error processing resume analysis:", error);
@@ -88,4 +102,35 @@ function splitPoints(text: string, bullet: string): string[] {
     .split(bullet)
     .map((point) => point.trim())
     .filter((point) => point.length > 0);
+}
+
+function parseSkillsAnalysis(text: string): { skill: string; score: number }[] {
+  const lines = text
+    .split("🔧")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+
+  return lines.map((line) => {
+    const [skill, scoreStr] = line.split(":").map((s) => s.trim());
+    return {
+      skill,
+      score: Number(scoreStr),
+    };
+  });
+}
+function parseSkillDistribution(
+  text: string
+): { name: string; value: number }[] {
+  const lines = text
+    .split("🧰")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+
+  return lines.map((line) => {
+    const [name, valueStr] = line.split(":").map((s) => s.trim());
+    return {
+      name,
+      value: Number(valueStr),
+    };
+  });
 }

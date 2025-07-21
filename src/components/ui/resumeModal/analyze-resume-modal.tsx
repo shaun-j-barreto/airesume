@@ -44,6 +44,8 @@ export function AnalyzeResumeModal() {
           ats: data.ats,
           score: data.score,
           scoreJustification: data.scoreJustification,
+          skillsAnalysis: data.skillsAnalysis,
+          skillDistribution: data.skillDistribution,
         });
         console.log("Resume analysis submitted successfully:", data);
       }

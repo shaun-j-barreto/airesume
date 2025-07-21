@@ -16,6 +16,8 @@ type ResumeData = {
   ats: string[];
   score: number;
   scoreJustification: string;
+  skillsAnalysis: { skill: string; score: number }[];
+  skillDistribution: { name: string; value: number }[];
 };
 
 type ResumeContextType = {
