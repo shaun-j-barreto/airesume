@@ -25,10 +25,10 @@ export function StrengthSection() {
             key={index}
             className="flex flex-row gap-3 bg-purple-300/5 hover:bg-purple-300/10 w-full max-w-3xl m-auto p-4 rounded-lg"
           >
-            <div className="bg-purple-300/10 rounded-full p-2 flex items-center justify-center h-fit">
+            <div className="bg-purple-300/10 rounded-full p-1 md:p-2 flex items-center justify-center h-fit">
               <ShieldCheck size={24} className="text-purple-300" />
             </div>
-            <div className="text-purple-100 text-base">{point}</div>
+            <div className="text-purple-100 md:text-md text-base">{point}</div>
           </div>
         ))}
       </div>

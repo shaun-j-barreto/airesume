@@ -29,7 +29,7 @@ export default function SkillDistributionPieChart() {
           </Pie>
         </PieChart>
       </ResponsiveContainer>
-      <div className="flex flex-wrap justify-center gap-4 -mt-15 ml-15 text-sm text-purple-100">
+      <div className="flex flex-wrap justify-center gap-2 md:gap-4 -mt-15 md:ml-15 m-10 text-sm text-purple-100">
         {data?.skillDistribution.map((entry, index) => (
           <div
             key={entry.name}

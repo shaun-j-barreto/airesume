@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Sora } from "next/font/google";
 import "./globals.css";
 import { ResumeProvider } from "@/context/ResumeContext";
+import { ModalProvider } from "@/components/ui/resumeModal/animated-modal";
+import { ToastContainer } from "react-toastify";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -26,7 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jakarta.variable} ${sora.variable}  antialiased`}>
-        <ResumeProvider>{children}</ResumeProvider>
+        <ResumeProvider>
+          <ModalProvider>
+            {children}
+            <ToastContainer position="top-center" theme="dark" />
+          </ModalProvider>
+        </ResumeProvider>
       </body>
     </html>
   );

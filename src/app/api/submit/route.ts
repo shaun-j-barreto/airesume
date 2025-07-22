@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const prompt = resumePrompt(role, fileData.text);
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-pro",
       contents: prompt,
     });
 

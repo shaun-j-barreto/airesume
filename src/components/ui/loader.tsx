@@ -8,7 +8,7 @@ export const LoaderFive = ({ text }: { text: string }) => {
       {text.split("").map((char, i) => (
         <motion.span
           key={i}
-          className="inline-block text-7xl "
+          className="inline-block md:text-7xl text-4xl "
           initial={{ scale: 1, opacity: 0.5 }}
           animate={{
             scale: [1, 1.1, 1],

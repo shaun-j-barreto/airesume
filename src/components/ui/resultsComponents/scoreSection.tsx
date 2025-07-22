@@ -115,7 +115,7 @@ export function ScoreSection() {
   };
 
   return (
-    <div className="bg-[#100120] hover:bg-purple-950/25 transition ease-in-out duration-400 border border-white/10 rounded-xl p-6 flex flex-row">
+    <div className="bg-[#100120] mb-4 md:mb-10 hover:bg-purple-950/25 transition ease-in-out duration-400 border border-white/10 rounded-xl p-2 md:p6 flex md:flex-row flex-col">
       <div className=" justify-evenly my-5  m-auto rounded-xl overflow-hidden">
         <div className="relative w-[300px] h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -146,11 +146,11 @@ export function ScoreSection() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-4 p-6 rounded-xl bg-violet-200/5  ml-4 max-w-3xl">
-        <h1 className="text-3xl font-bold text-violet-200  tracking-wide opacity-90">
+      <div className="flex flex-col gap-4 p-2 md:p-6 rounded-xl bg-violet-200/5  md:ml-4 max-w-3xl">
+        <h1 className="md:text-3xl text-xl font-bold text-violet-200  tracking-wide opacity-90">
           Overall Resume -:-
           <span
-            className=" text-3xl font-extrabold  py-1 px-4 rounded-md tracking-wide"
+            className="md:text-3xl text-xl font-extrabold  py-1 px-4 rounded-md tracking-wide"
             style={getScoreStyle(score)}
           >
             {score === 100
@@ -164,15 +164,15 @@ export function ScoreSection() {
         </h1>
 
         <div className="bg-violet-300/5 text-violet-100  p-4 rounded-md  shadow-sm">
-          <p className="text-md leading-relaxed whitespace-pre-line">
+          <p className="md:text-base text-sm leading-relaxed whitespace-pre-line">
             {data?.scoreJustification}
           </p>
         </div>
-        <div className="flex flex-row gap-5 flex-wrap">
+        <div className="flex flex-row md:gap-5 gap-2 flex-wrap">
           {scoreBadges.map((badge, index) => (
             <div
               key={index}
-              className={`${badge.bg} ${badge.text} border ${badge.border} shadow-md py-1 px-3 rounded-full`}
+              className={`${badge.bg} ${badge.text} border ${badge.border} md:text-sm text-xs shadow-md py-1 px-3 rounded-full`}
             >
               {badge.label}
             </div>

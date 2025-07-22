@@ -24,15 +24,14 @@ export default function Results() {
   }, [data]);
 
   return (
-    <div className="p-6 ">
+    <div className="md:p-6 p-2 ">
       {loading ? (
         <LoaderFive text="Analyzing Resume..." />
       ) : data ? (
         <div className="space-y-10 mt-20 ">
-          {/* <h2 className="text-lg font-semibold">Role: {data.role}</h2> */}
           <Navbar />
           <ScoreSection />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-10 gap-5">
             <SkillAnalysisBarChart />
             <SkillDistributionPieChart />
           </div>

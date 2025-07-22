@@ -15,16 +15,16 @@ export function Navbar() {
       <div className="container mx-auto flex gap-5 items-center">
         <Link
           href="/"
-          className=" cursor-pointer font-medium border flex flex-row justify-center items-center gap-2 border-purple-300/40 hover:bg-violet-300 hover:text-black px-2 py-1 rounded-md"
+          className=" cursor-pointer md:text-base text-sm font-medium border flex flex-row justify-center items-center gap-2 border-purple-300/40 hover:bg-violet-300 hover:text-black px-2 py-1 rounded-md"
         >
           <MoveLeft size={20} />
           Back to Upload
         </Link>
         <div className="flex-1 flex flex-col ">
-          <h1 className="text-purple-200 text-2xl font-bold">
-            Parse Mint Resume Analyzer Results
+          <h1 className="text-purple-200 md:text-2xl text-lg font-bold">
+            Parse Mint Results
           </h1>
-          <span className="text-sm text-neutral-300">
+          <span className="text-xs text-neutral-300">
             Analysis completed on {formattedDate}
           </span>
         </div>
