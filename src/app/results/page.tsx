@@ -18,7 +18,7 @@ export default function Results() {
 
   useEffect(() => {
     if (data) {
-      setLoading(true);
+      setLoading(false);
       console.log("Data loaded:", data);
     }
   }, [data]);
