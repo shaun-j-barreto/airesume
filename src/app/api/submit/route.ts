@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import pdfparse from "pdf-parse";
+// import pdfparse from "pdf-parse";
 import { GoogleGenAI } from "@google/genai";
 import { resumePrompt } from "./aiResumePrompt";
 
@@ -12,6 +12,8 @@ export async function POST(request: Request) {
 
     const buffer = await file.arrayBuffer();
     const rawData = Buffer.from(buffer);
+
+    const pdfparse = (await import("pdf-parse/lib/pdf-parse.js")).default;
     const fileData = await pdfparse(rawData);
     // console.log("File content:", fileData.text);
 
