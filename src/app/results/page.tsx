@@ -18,7 +18,7 @@ export default function Results() {
 
   useEffect(() => {
     if (data) {
-      setLoading(false);
+      setLoading(true);
       console.log("Data loaded:", data);
     }
   }, [data]);
@@ -26,7 +26,7 @@ export default function Results() {
   return (
     <div className="md:p-6 p-2 ">
       {loading ? (
-        <LoaderFive text="Analyzing Resume..." />
+        <LoaderFive text="Analyzing Resume" />
       ) : data ? (
         <div className="space-y-10 mt-20 ">
           <Navbar />

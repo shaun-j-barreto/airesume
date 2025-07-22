@@ -47,6 +47,7 @@ export default function SkillDistributionPieChart() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PieTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (
