@@ -29,7 +29,7 @@ export function AnalyzeResumeModal() {
       return;
     }
 
-    if (files.length !== 1) {
+    if (files.length == 0 || files.length > 1) {
       toast.error("Please upload exactly one resume file.");
       return;
     }
