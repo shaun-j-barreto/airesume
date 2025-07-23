@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     const missingText = extractSection(matches.missingMatch);
     const improvementText = extractSection(matches.improvementMatch);
     const atsText = extractSection(matches.atsMatch);
-    const score = extractSection(matches.scoreMatch);
+    const scoreText = extractSection(matches.scoreMatch);
     const scoreJustification = extractSection(matches.scoreJustificationMatch);
     const skillsAnalysisText = extractSection(matches.skillsAnalysisMatch);
     const skillDistributionText = extractSection(
@@ -63,6 +63,7 @@ export async function POST(request: Request) {
     const ats = splitPoints(atsText, "📋");
     const skillsAnalysis = parseSkillsAnalysis(skillsAnalysisText);
     const skillDistribution = parseSkillDistribution(skillDistributionText);
+    const score = calculateATSScore(scoreText);
 
     console.log(
       strengths,
@@ -135,4 +136,38 @@ function parseSkillDistribution(
       value: Number(valueStr),
     };
   });
+}
+
+function parseScoreComponent(text: string, label: string): number {
+  const match = text.match(new RegExp(`${label}:\\s*(\\d+)`));
+  return match ? parseInt(match[1], 10) : 0;
+}
+
+function calculateATSScore(componentText: string): number {
+  const keyword = parseScoreComponent(componentText, "🔢Keyword Match");
+  const formatting = parseScoreComponent(
+    componentText,
+    "🔢Formatting Compatibility"
+  );
+  const content = parseScoreComponent(
+    componentText,
+    "🔢Content Quality & Clarity"
+  );
+  const missing = parseScoreComponent(
+    componentText,
+    "🔢Missing Critical Areas"
+  );
+  const improvement = parseScoreComponent(
+    componentText,
+    "🔢Improvement Suggestions"
+  );
+
+  const finalScore =
+    keyword * 0.4 +
+    formatting * 0.2 +
+    content * 0.2 +
+    missing * 0.1 +
+    improvement * 0.1;
+
+  return Math.trunc(finalScore);
 }

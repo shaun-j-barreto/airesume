@@ -31,31 +31,69 @@ This template provides a standardized, ATS-focused evaluation of a resume, ensur
 
 **Scoring Criteria (Out of 100)**
 
-Use the following weighted breakdown:
+Instead of calculating the total ATS Compatibility Score, return only the following five component scores out of 100, based on this breakdown:
 
-| Category                   | Weight |
-|----------------------------|--------|
-| Keyword Match              | 40%    |
-| Formatting Compatibility   | 20%    |
-| Content Quality & Clarity  | 20%    |
-| Missing Critical Areas     | 10%    |
-| Improvement Suggestions    | 10%    |
+| Component                  | Weight |
+|---------------------------|--------|
+| Keyword Match             | 40%    |
+| Formatting Compatibility  | 20%    |
+| Content Quality & Clarity | 20%    |
+| Missing Critical Areas    | 10%    |
+| Improvement Suggestions   | 10%    |
 
-Use the following formula to calculate the score:
+Instructions:
+- Assign each component a number between 0 and 100 based on how the resume performs.
+- Be strict and objective — do not inflate scores.
+- Only return the five scores in plain text like this:
 
-> **Total Score = (Keyword Match % × 0.4) + (Formatting Compatibility % × 0.2) + (Content Strength % × 0.2) + (Missing Critical Areas Score × 0.1) + (Improvement Suggestions Score × 0.1)**
+{{SCORE_START}} (just an example, do not use these exact values)
+🔢Keyword Match: 75
+🔢Formatting Compatibility: 85
+🔢Content Quality & Clarity: 80
+🔢Missing Critical Areas: 70
+🔢Improvement Suggestions: 65
+{{SCORE_END}}
 
-- Keyword Match: % of relevant skills/tools/terms aligned with the role.
-- Formatting Compatibility: Use of standard headers, fonts, no graphics/tables, bullet points, etc.
-- Content Strength: Use of action verbs, measurable outcomes, complete sections.
-- Missing Critical Areas: Deduct points for missing expected technologies, soft skills, or experience.
-- Improvement Suggestions: Deduct if there are many improvements needed.
+-Use these rubrics for consistency:
 
+🔢 Keyword Match (0–100)
+Rate based on how many relevant, role-specific keywords (tools, frameworks, responsibilities) appear naturally throughout the resume.
+90–100: 90%+ match with highly relevant, well-distributed keywords
+70–89: Good coverage but minor gaps
+50–69: Some important skills/terms missing
+<50: Very poor alignment or irrelevant keywords
 
-**Be strict.** Do not give 90+ scores unless the resume is excellent. If it’s average or missing key elements, keep it under 80. Anything needing improvement should be 70 or below.
+🔢 Formatting Compatibility (0–100)
+Assess whether the resume uses ATS-friendly formatting:
+90–100: Clean structure, standard fonts, no tables/images, clear section headers
+70–89: Generally clean but has 1–2 minor formatting flaws
+50–69: Moderate issues (tables, graphics, inconsistent sections)
+<50: Poor formatting; not ATS-parsable
 
+🔢 Content Quality & Clarity (0–100)
+Evaluate clarity, conciseness, grammar, and use of action-oriented language:
+90–100: Excellent grammar, clear impact statements, good flow
+70–89: Mostly clear with a few weak areas
+50–69: Several vague or passive statements
+<50: Unclear or generic content
 
-Consistency Note: The same resume will yield the same score unless the job description or analyzer settings change.
+🔢 Missing Critical Areas (0–100)
+Deduct based on missing sections (e.g., Projects, Summary, Certifications) or key role-specific skills.
+90–100: Nothing important missing
+70–89: Only 1–2 minor things missing
+50–69: Lacks multiple role-critical sections
+<50: Missing core sections or role-essential content
+
+🔢 Improvement Suggestions (0–100)
+Rate how many improvements are needed (deduct if multiple weak points exist):
+90–100: Almost nothing to improve
+70–89: Minor enhancements needed
+50–69: Moderate number of actionable improvements
+<50: Resume needs significant restructuring or rework
+
+Do **not** include the total score — we will calculate that ourselves.
+
+Be concise and only list the values. Do not include any explanations or formatting.
 
 2. 🔍 Key Strengths
 List 3–10 strengths of the resume (e.g., strong keyword alignment, clear formatting, or quantifiable achievements).
@@ -138,7 +176,7 @@ Be objective. Use full resume context to derive accurate skill proportions.
 ---
 🔎 Your output should be structured as follows:
 {{SCORE_START}}
-(give the score directly as a number. dont use any subheading or text before the score nor write it as "x/100" or "x out of 100" or anything like that, just give the score as a number)
+(all five component scores as described above will go here. use 🔢 instead of the default bullet point)
 {{SCORE_END}}
 
 {{SCORE_JUSTIFICATION_START}}  
