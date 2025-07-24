@@ -1,13 +1,25 @@
 import { useResumeContext } from "@/context/ResumeContext";
+import { ChartPie } from "lucide-react";
 import { Cell, Pie, PieChart, Tooltip, ResponsiveContainer } from "recharts";
 
 const COLORS = ["#b946f2", "#acccff", "#fcb995", "#fc80d2"];
 export default function SkillDistributionPieChart() {
   const { data } = useResumeContext();
-  console.log("Skill Distribution Data:", data?.skillDistribution);
   return (
-    <div className="relative w-full h-[500px] bg-[#100120] hover:bg-[#1b1729] transition ease-in-out duration-400 border border-white/10 rounded-xl p-4">
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="relative w-full h-[550px] bg-[#100120] hover:bg-[#1b1729] transition ease-in-out duration-400 border border-white/10 rounded-xl p-4">
+      <div className="flex items-center mb-6 w-full max-w-3xl m-auto">
+        <div className="bg-purple-300/10 rounded-full p-2 border border-purple-300/20 shadow-md flex items-center justify-center">
+          <ChartPie size={30} className="text-purple-300" />
+        </div>
+        <h2 className="text-purple-200 text-2xl font-semibold p-4 tracking-wide">
+          Skill Distribution
+        </h2>
+      </div>
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        className="-top-30 relative"
+      >
         <PieChart width={500} height={400}>
           <Tooltip content={PieTooltip} />
           <Pie
@@ -29,7 +41,7 @@ export default function SkillDistributionPieChart() {
           </Pie>
         </PieChart>
       </ResponsiveContainer>
-      <div className="flex flex-wrap justify-center gap-2 md:gap-4 -mt-15 md:ml-15 m-10 text-sm text-purple-100">
+      <div className="flex flex-wrap justify-center gap-2 md:gap-4 -mt-50 md:ml-25 m-10 text-sm text-purple-100">
         {data?.skillDistribution.map((entry, index) => (
           <div
             key={entry.name}
