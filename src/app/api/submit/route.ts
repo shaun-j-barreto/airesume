@@ -25,7 +25,8 @@ export async function POST(request: Request) {
       generationConfig: {
         temperature: 0.2,
       },
-    });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
 
     const aiText = response.text || "";
 
