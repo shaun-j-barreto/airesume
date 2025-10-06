@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@google/genai": "^1.9.0",
+    "@google/genai": "^1.22.0",
     "@react-three/fiber": "^9.2.0",
     "@tabler/icons-react": "^3.34.0",
     "@types/three": "^0.178.0",
