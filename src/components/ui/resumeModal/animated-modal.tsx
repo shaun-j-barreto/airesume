@@ -50,7 +50,7 @@ export const ModalTrigger = ({
   return (
     <button
       className={cn(
-        "px-8 py-2 rounded-md text-white text-center relative overflow-hidden",
+        "px-8 py-2 rounded-xs text-white text-center relative overflow-hidden",
         className
       )}
       onClick={() => setOpen(true)}
@@ -103,7 +103,7 @@ export const ModalBody = ({
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[95%] md:max-w-[60%] max-w-[95%]  bg-black/70 border-2 border-gray-500/30  md:rounded-2xl rounded-md relative z-50 flex flex-col flex-1 overflow-hidden",
+              "min-h-[50%] max-h-[95%] md:max-w-[60%] max-w-[95%]  bg-black/70 border-2 border-gray-500/30  rounded-xs relative z-50 flex flex-col flex-1 overflow-hidden",
               className
             )}
             initial={{
@@ -202,7 +202,7 @@ const CloseIcon = () => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-black cursor-pointer bg-purple-300 h-6 w-6 group-hover:scale-125 rounded-full p-0.5  transition duration-200"
+        className="text-black cursor-pointer bg-purple-300 h-6 w-6 rounded-xs hover:rounded-full p-0.5  transition duration-200"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M18 6l-12 12" />
