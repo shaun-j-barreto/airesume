@@ -8,6 +8,10 @@ export async function POST(request: Request) {
   try {
     const formData = await request.formData();
     const role = formData.get("role") as string;
+    const experience = formData.get("experience") as string;
+    const domain = formData.get("domain") as string;
+    const targetCompany = formData.get("targetCompany") as string;
+    const jobDescription = formData.get("jobDescription") as string;
     const file = formData.get("file") as File;
 
     const buffer = await file.arrayBuffer();
@@ -17,7 +21,15 @@ export async function POST(request: Request) {
     const fileData = await pdfparse(rawData);
     // console.log("File content:", fileData.text);
 
-    const prompt = resumePrompt(role, fileData.text);
+    const prompt = resumePrompt(
+      role,
+      experience,
+      domain,
+      targetCompany,
+      jobDescription,
+      fileData.text
+    );
+    console.log(role, experience, domain, targetCompany, jobDescription);
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",

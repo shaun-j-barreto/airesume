@@ -10,6 +10,10 @@ import {
 
 type ResumeData = {
   role: string;
+  experience: string;
+  domain: string;
+  targetCompany: string;
+  jobDescription: string;
   strenghts: string[];
   missing: string[];
   improvement: string[];

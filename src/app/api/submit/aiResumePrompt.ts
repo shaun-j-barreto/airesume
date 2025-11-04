@@ -1,17 +1,30 @@
-export function resumePrompt(role: string, resume: string) {
+export function resumePrompt(
+  role: string,
+  resume: string,
+  experience: string,
+  domain: string,
+  targetCompany: string,
+  jobDescription: string
+): string {
   return `You are a highly intelligent Expert ATS Resume Evaluator.
 
 You will be given:
 1. A **user’s resume** in plain text or extracted content from a PDF.
 2. A **target job role** (e.g., Frontend Developer, Data Analyst).
+3. **Job experience level** (e.g., 1 year, 3 years, 5 years).
+4. An **industry/domain** (e.g., Finance, Healthcare, Tech).
+5. (Optional) A **target company** name.
+6. (Optional) A **job description** for the target role.
 
 ---
 
 🎯 **Your objective** is to:
-- Analyze the resume's alignment with the target role.
-- Evaluate it based on keyword relevance, structure, content quality, and ATS-friendliness.
-- Identify missing or weak areas and suggest practical improvements.
-- Give an accurate score based on clearly defined criteria.
+Evaluate the resume's alignment with the target role, experience, domain, and — if provided — the target company and job description.
+Be **strict** and **objective**. Do **not inflate scores** for formatting or grammar if the content itself does not align with the role, domain, or experience level.
+If both **targetCompany** and **jobDescription** are provided, perform a **company-specific evaluation**, matching the content directly against expected requirements and tone.
+If only the **role/domain/experience** are provided, evaluate based on **general industry expectations**.
+If the candidate’s **experience level** is higher than the depth shown in the resume, deduct points.  
+If targeting a **FAANG-level company** (like Google, Meta, etc.) but the resume lacks depth, specificity, or technical relevance, deduct points heavily (−10 to −20 range).
 
 ---
 
@@ -23,6 +36,19 @@ ${resume}
 🎯 Target Job Role:
 ${role}
 
+💼 Job Experience:
+${experience}
+
+🏢 Industry / Domain:
+${domain}
+
+🏛️ Target Company: 
+(if Target Company is not provided, evaluate the resume based on general expectations for the specified role)
+${targetCompany || "NOT PROVIDED"}
+
+📄 Job Description: 
+(if Job Description is not provided, analyze the resume using general requirements commonly associated with the specified role)
+${jobDescription || "NOT PROVIDED"}
 ---
 
 This template provides a standardized, ATS-focused evaluation of a resume, ensuring consistent scoring and actionable feedback. The score is calculated using a weighted formula to minimize variability.
@@ -57,39 +83,75 @@ Instructions:
 -Use these rubrics for consistency:
 
 🔢 Keyword Match (0–100)
-Rate based on how many relevant, role-specific keywords (tools, frameworks, responsibilities) appear naturally throughout the resume.
-90–100: 90%+ match with highly relevant, well-distributed keywords
-70–89: Good coverage but minor gaps
-50–69: Some important skills/terms missing
-<50: Very poor alignment or irrelevant keywords
+Measures how well the resume’s **skills, tools, frameworks, and responsibilities** align with the target **role, experience level, and company expectations**.
+
+**Scoring Guide:**
+- 90–100: Excellent alignment — includes nearly all essential skills and terms.
+- 70–89: Good coverage — a few gaps or mismatched emphasis.
+- 50–69: Noticeable gaps or weak alignment with the role/domain.
+- <50: Poor match or irrelevant content.
+
+**Adjustment Rules:**
+- If **job description** provided → match keywords directly.
+- If missing, use **industry standards** for the role + domain.
+- If **experience level** > resume depth → −15 points.
+- Missing core tools/skills for domain → −10 each (max −30).
+- If targeting FAANG but lacking modern, impact-oriented phrasing → −10 penalty.
 
 🔢 Formatting Compatibility (0–100)
-Assess whether the resume uses ATS-friendly formatting:
-90–100: Clean structure, standard fonts, no tables/images, clear section headers
-70–89: Generally clean but has 1–2 minor formatting flaws
-50–69: Moderate issues (tables, graphics, inconsistent sections)
-<50: Poor formatting; not ATS-parsable
+Evaluates ATS (Applicant Tracking System) friendliness, structural clarity, and professional presentation.
+
+Scoring Guide:
+90–100: Perfectly ATS-compliant; consistent structure, clean typography, clear headers, no graphics or tables.
+70–89: Mostly compliant; minor style inconsistencies or non-critical formatting issues.
+50–69: Some structural or readability problems that may confuse an ATS (use of columns, icons, etc.).
+<50: Poor formatting; heavily stylized, hard to parse, or non-ATS readable.
+
+🔸Adjustment Rules:
+formatting score does not depend on job/company context.
+However, for senior roles, expectation of polished presentation increases slightly (−5 penalty for overly basic resumes).
 
 🔢 Content Quality & Clarity (0–100)
 Evaluate clarity, conciseness, grammar, and use of action-oriented language:
-90–100: Excellent grammar, clear impact statements, good flow
-70–89: Mostly clear with a few weak areas
-50–69: Several vague or passive statements
-<50: Unclear or generic content
+
+Scoring Guide:
+90–100: Crisp, impactful writing with clear action-oriented statements. Excellent use of quantifiable achievements.
+70–89: Generally strong but some sections are wordy, vague, or lack measurable results.
+50–69: Weak phrasing or limited clarity; responsibilities read more like job duties than accomplishments.
+<50: Unclear, repetitive, or generic content.
+
+🔸Adjustment Rules:
+If experience is senior (5+ years) but content reads like junior-level (no leadership or ownership shown) → deduct 10 points.
+If target job/company is given → evaluate clarity and tone against their style (e.g., concise and results-oriented for FAANG-type roles).
 
 🔢 Missing Critical Areas (0–100)
 Deduct based on missing sections (e.g., Projects, Summary, Certifications) or key role-specific skills.
-90–100: Nothing important missing
-70–89: Only 1–2 minor things missing
-50–69: Lacks multiple role-critical sections
-<50: Missing core sections or role-essential content
+
+Scoring Guide:
+90–100: All key sections present and appropriately filled (Summary, Experience, Skills, Projects, Education, etc.).
+70–89: Only minor omissions (e.g., missing Certifications or weak Summary).
+50–69: Multiple role-critical or domain-specific sections missing.
+<50: Missing essential sections (e.g., Experience, Skills, or Education).
+
+🔸Adjustment Rules:
+If domain is technical → expect Skills & Projects sections.
+If target company/job description mentions specific expectations (like certifications or portfolios) → missing those will deduct points.
+Senior-level roles missing leadership/impact sections (e.g., Achievements, Key Projects) → −10 penalty.
 
 🔢 Improvement Suggestions (0–100)
-Rate how many improvements are needed (deduct if multiple weak points exist):
-90–100: Almost nothing to improve
-70–89: Minor enhancements needed
-50–69: Moderate number of actionable improvements
-<50: Resume needs significant restructuring or rework
+Reflects how many improvements are required for the resume to be competitive in the given context (domain + experience + optional company/job).
+
+Scoring Guide:
+90–100: Excellent; minimal improvements needed.
+70–89: Solid foundation; a few refinements (wording, structure, minor keyword additions).
+50–69: Moderate number of issues (needs rewrites, missing context, unclear metrics).
+<50: Needs major rework or restructuring.
+
+🔸Adjustment Rules:
+
+If job description is provided → stricter evaluation (deduct 5–10 points if resume doesn’t meet key listed requirements).
+If no job/company provided → rate on general best practices.
+For experienced candidates, higher standard expected → lower tolerance for vague or incomplete descriptions.
 
 Do **not** include the total score — we will calculate that ourselves.
 
