@@ -122,7 +122,7 @@ export function AnalyzeResumeModal() {
                 </label>
                 <input
                   id="role"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-dashed border-purple-300"
+                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border  border-purple-300"
                   placeholder="e.g. Software Engineer, Data Scientist"
                   onChange={(e) => setRole(e.target.value)}
                 />
@@ -136,7 +136,7 @@ export function AnalyzeResumeModal() {
                 </label>
                 <input
                   id="experience"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-dashed border-purple-300"
+                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border  border-purple-300"
                   placeholder="e.g. 1, 3, 5 years"
                   onChange={(e) => setExperience(e.target.value)}
                 />
@@ -150,7 +150,7 @@ export function AnalyzeResumeModal() {
                 </label>
                 <input
                   id="domain"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-dashed border-purple-300"
+                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-purple-300"
                   placeholder="e.g. Finance, Healthcare, Tech"
                   onChange={(e) => setDomain(e.target.value)}
                 />
@@ -164,7 +164,7 @@ export function AnalyzeResumeModal() {
                 </label>
                 <input
                   id="targetCompany"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-dashed border-purple-300"
+                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-purple-300"
                   placeholder="e.g. Google, Amazon"
                   onChange={(e) => setTargetCompany(e.target.value)}
                 />
@@ -178,13 +178,13 @@ export function AnalyzeResumeModal() {
                 </label>
                 <textarea
                   id="jobDescription"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-dashed border-purple-300"
+                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-purple-300"
                   placeholder="e.g. Responsibilities, requirements, skills..."
                   onChange={(e) => setJobDescription(e.target.value)}
                 />
               </div>
             </div>
-            <div className="w-full max-w-4xl mx-auto min-h-80 border border-dashed border-purple-300 bg-neutral-900 ">
+            <div className="w-full max-w-4xl mx-auto min-h-80 border border-purple-300 bg-neutral-900 ">
               <FileUpload onChange={(files) => setFiles(files)} />
             </div>
           </ModalContent>

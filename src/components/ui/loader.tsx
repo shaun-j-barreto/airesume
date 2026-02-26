@@ -30,7 +30,7 @@ export const LoaderFive = ({ text }: { text: string }) => {
           ))}
         </div>
         <p className="md:text-lg text-sm text-center md:mt-4 mt-2 text-violet-200/70">
-          Analyzing your resume. This may take up to a minute
+          This may take up to a minute
         </p>
       </div>
     </div>
