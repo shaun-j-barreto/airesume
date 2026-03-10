@@ -98,31 +98,36 @@ export function AnalyzeResumeModal() {
   return (
     <div className="md:py-15 py-5 flex items-center justify-center">
       <Modal>
-        <ModalTrigger className="bg-violet-300 hover:bg-neutral-900/50   transition duration-400  md:px-6 px-4 py-2  text-base md:text-2xl cursor-pointer font-medium rounded-md border border-purple-500/20 shadow-md flex justify-center group/modal-btn z-80">
-          <span className=" text-black font-semibold group-hover/modal-btn:-translate-y-70 text-center transition duration-500">
+        <ModalTrigger className="bg-orange-500/60 transition duration-400 md:px-6 px-4 py-1 text-lg md:text-2xl cursor-pointer font-medium rounded-md  shadow-lg flex justify-center group/modal-btn z-80 relative overflow-hidden">
+          {/* The Text - Changed to white for better contrast against the solid orange */}
+          <span className="text-gray-900 tracking-widest font-semibold group-hover/modal-btn:-translate-y-20 text-center transition duration-500">
             Analyze Resume
           </span>
-          <div className="translate-y-70 group-hover/modal-btn:translate-y-0 flex items-center justify-center absolute inset-0 transition duration-500 z-60">
-            <FileUp />
+
+          {/* The Icon Container */}
+          <div className="translate-y-20 group-hover/modal-btn:translate-y-0 flex items-center justify-center absolute inset-0 transition duration-500 z-60 text-gray-900">
+            <FileUp className="w-6 h-6 md:w-8 md:h-8" />
           </div>
         </ModalTrigger>
 
         <ModalBody className="overflow-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <ModalContent>
-            <h4 className="text-xl md:text-2xl text-purple-100  font-bold text-center md:mb-8 mb-4 mt-2">
+            <h4 className="text-xl md:text-3xl text-gray-900 font-bold text-center md:mb-8 mb-4 mt-2">
               Analyze Your Resume with AI
             </h4>
             <div className="grid grid-cols-2 gap-2">
               <div className="flex flex-col col-span-2 md:col-span-1">
                 <label
                   htmlFor="role"
-                  className="text-purple-100 text-sm mb-0.5 font-medium"
+                  // Changed to text-gray-900
+                  className="text-gray-900 text-sm mb-0.5 font-medium"
                 >
                   Job Role / Position
                 </label>
                 <input
                   id="role"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border  border-purple-300"
+                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
+                  className="bg-orange-100 px-2 py-1 text-gray-700 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-800"
                   placeholder="e.g. Software Engineer, Data Scientist"
                   onChange={(e) => setRole(e.target.value)}
                 />
@@ -130,13 +135,15 @@ export function AnalyzeResumeModal() {
               <div className="flex flex-col col-span-2 md:col-span-1">
                 <label
                   htmlFor="experience"
-                  className="text-purple-100 text-sm mb-0.5 font-medium"
+                  // Changed to text-gray-900
+                  className="text-gray-900 text-sm mb-0.5 font-medium"
                 >
                   Job Experience
                 </label>
                 <input
                   id="experience"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border  border-purple-300"
+                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
+                  className="bg-orange-100 px-2 py-1 text-gray-700 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-800"
                   placeholder="e.g. 1, 3, 5 years"
                   onChange={(e) => setExperience(e.target.value)}
                 />
@@ -144,13 +151,15 @@ export function AnalyzeResumeModal() {
               <div className="flex flex-col col-span-2 md:col-span-1">
                 <label
                   htmlFor="domain"
-                  className="text-purple-100 text-sm mb-0.5 font-medium"
+                  // Changed to text-gray-900
+                  className="text-gray-900 text-sm mb-0.5 font-medium"
                 >
                   Industry / Domain
                 </label>
                 <input
                   id="domain"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-purple-300"
+                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
+                  className="bg-orange-100 px-2 py-1 text-gray-700 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-800"
                   placeholder="e.g. Finance, Healthcare, Tech"
                   onChange={(e) => setDomain(e.target.value)}
                 />
@@ -158,13 +167,15 @@ export function AnalyzeResumeModal() {
               <div className="flex flex-col col-span-2 md:col-span-1">
                 <label
                   htmlFor="targetCompany"
-                  className="text-purple-100 text-sm mb-0.5 font-medium"
+                  // Changed to text-gray-900
+                  className="text-gray-900 text-sm mb-0.5 font-medium"
                 >
                   Target Company (optional)
                 </label>
                 <input
                   id="targetCompany"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-purple-300"
+                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
+                  className="bg-orange-100 px-2 py-1 text-gray-700 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-800"
                   placeholder="e.g. Google, Amazon"
                   onChange={(e) => setTargetCompany(e.target.value)}
                 />
@@ -172,19 +183,22 @@ export function AnalyzeResumeModal() {
               <div className="flex flex-col col-span-2">
                 <label
                   htmlFor="jobDescription"
-                  className="text-purple-100 text-sm mb-0.5 font-medium"
+                  // Changed to text-gray-900
+                  className="text-gray-900 text-sm mb-0.5 font-medium"
                 >
                   Job Description (optional)
                 </label>
                 <textarea
                   id="jobDescription"
-                  className="bg-neutral-900 px-2 py-1 text-white text-sm md:mb-1.5 mb-2 border border-purple-300"
+                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
+                  className="bg-orange-100 px-2 py-1 text-gray-700 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-800"
                   placeholder="e.g. Responsibilities, requirements, skills..."
                   onChange={(e) => setJobDescription(e.target.value)}
                 />
               </div>
             </div>
-            <div className="w-full max-w-4xl mx-auto min-h-80 border border-purple-300 bg-neutral-900 ">
+            {/* Updated the FileUpload container to match the light orange theme */}
+            <div className="w-full max-w-4xl mx-auto min-h-80 border bg-zinc-700 mt-4 rounded-md">
               <FileUpload onChange={(files) => setFiles(files)} />
             </div>
           </ModalContent>
@@ -205,7 +219,7 @@ function CancelButton() {
     <button
       type="button"
       onClick={() => setOpen(false)}
-      className="cursor-pointer px-2 py-1 bg-transparent text-(--color-text-primary) transition duration-200 hover:scale-105 border border-purple-300 rounded-xs text-sm w-28"
+      className="cursor-pointer px-2 py-1 bg-gray-900 text-orange-50   transition duration-200 hover:scale-105 rounded-xs text-sm w-28"
     >
       Cancel
     </button>
@@ -217,7 +231,7 @@ function StartButton({ handleData }: { handleData: () => void }) {
 
   return (
     <button
-      className="cursor-pointer bg-purple-400 text-black  text-sm px-2 py-1 rounded-xs border border-black w-28 hover:scale-105 transition duration-200"
+      className="cursor-pointer bg-orange-100 text-gray-900 border-1 border-gray-900 text-sm px-2 py-1 rounded-xs  w-28 hover:scale-105 transition duration-200"
       onClick={() => {
         clearData();
         handleData();

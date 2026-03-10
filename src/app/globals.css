@@ -6,16 +6,17 @@
   --color-text-primary: var(--text-primary);
   --font-jakarta: var(--font-jakarta);
   --font-sora: var(--font-sora);
+  --font-alumni: var(--font-alumni);
 }
 
 :root {
-  --background: #000000;
+  --background: #fffaf5;
   --foreground: #ededed;
-  --text-primary: #e9d5ff;
+  --text-primary: #222121;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-jakarta), sans-serif;
+  font-family: var(--font-alumni), sans-serif;
 }
