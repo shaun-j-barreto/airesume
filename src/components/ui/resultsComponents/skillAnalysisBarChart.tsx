@@ -14,12 +14,12 @@ import { ChartNoAxesCombined } from "lucide-react";
 export default function SkillAnalysisBarChart() {
   const { data } = useResumeContext();
   return (
-    <div className="relative w-full h-[550px] bg-[#100120] hover:bg-[#1b1729] transition ease-in-out duration-400 border border-white/10 rounded-xl p-4">
+    <div className="relative w-full h-[550px] border-1 border-gray-800/10 bg-orange-50 hover:bg-orange-100/60 transition ease-in-out duration-400 shadow-sm rounded-xl p-4">
       <div className="flex items-center mb-6 w-full max-w-3xl m-auto">
-        <div className="bg-purple-300/10 rounded-full p-2 border border-purple-300/20 shadow-md flex items-center justify-center">
-          <ChartNoAxesCombined size={30} className="text-purple-300" />
+        <div className="bg-gray-900 rounded-full p-2 shadow-md flex items-center justify-center">
+          <ChartNoAxesCombined size={30} className="text-orange-200" />
         </div>
-        <h2 className="text-purple-200 text-2xl font-semibold p-4 tracking-wide">
+        <h2 className="text-gray-900 text-2xl font-semibold p-4 tracking-wide">
           Skill Analysis
         </h2>
       </div>
@@ -51,8 +51,8 @@ export default function SkillAnalysisBarChart() {
           <Tooltip content={<CustomTooltip />} />
           <Bar
             dataKey="score"
-            fill="#a855f7"
-            activeBar={<Rectangle fill="#3b0764" stroke="#e9d5ff" />}
+            fill="#F4BB44"
+            activeBar={<Rectangle fill="orange" stroke="black" />}
             className="transition-all duration-300 "
           />
         </BarChart>

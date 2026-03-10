@@ -19,7 +19,6 @@ export async function POST(request: Request) {
 
     const pdfparse = (await import("pdf-parse/lib/pdf-parse.js")).default;
     const fileData = await pdfparse(rawData);
-    // console.log("File content:", fileData.text);
 
     const prompt = resumePrompt(
       role,
@@ -27,7 +26,7 @@ export async function POST(request: Request) {
       domain,
       targetCompany,
       jobDescription,
-      fileData.text
+      fileData.text,
     );
     console.log(role, experience, domain, targetCompany, jobDescription);
 
@@ -59,7 +58,10 @@ export async function POST(request: Request) {
     };
 
     const matches = Object.fromEntries(
-      Object.entries(regexMap).map(([key, regex]) => [key, aiText.match(regex)])
+      Object.entries(regexMap).map(([key, regex]) => [
+        key,
+        aiText.match(regex),
+      ]),
     );
 
     const strengthText = extractSection(matches.strengthMatch);
@@ -70,7 +72,7 @@ export async function POST(request: Request) {
     const scoreJustification = extractSection(matches.scoreJustificationMatch);
     const skillsAnalysisText = extractSection(matches.skillsAnalysisMatch);
     const skillDistributionText = extractSection(
-      matches.skillDistributionMatch
+      matches.skillDistributionMatch,
     );
 
     const strengths = splitPoints(strengthText, "🔍");
@@ -89,7 +91,7 @@ export async function POST(request: Request) {
       score,
       scoreJustification,
       skillsAnalysis,
-      skillDistribution
+      skillDistribution,
     );
 
     return NextResponse.json({
@@ -108,7 +110,7 @@ export async function POST(request: Request) {
     console.error("Error processing resume analysis:", error);
     return NextResponse.json(
       { error: "Failed to analyze resume." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -138,7 +140,7 @@ function parseSkillsAnalysis(text: string): { skill: string; score: number }[] {
   });
 }
 function parseSkillDistribution(
-  text: string
+  text: string,
 ): { name: string; value: number }[] {
   const lines = text
     .split("🧰")
@@ -163,19 +165,19 @@ function calculateATSScore(componentText: string): number {
   const keyword = parseScoreComponent(componentText, "🔢Keyword Match");
   const formatting = parseScoreComponent(
     componentText,
-    "🔢Formatting Compatibility"
+    "🔢Formatting Compatibility",
   );
   const content = parseScoreComponent(
     componentText,
-    "🔢Content Quality & Clarity"
+    "🔢Content Quality & Clarity",
   );
   const missing = parseScoreComponent(
     componentText,
-    "🔢Missing Critical Areas"
+    "🔢Missing Critical Areas",
   );
   const improvement = parseScoreComponent(
     componentText,
-    "🔢Improvement Suggestions"
+    "🔢Improvement Suggestions",
   );
 
   const finalScore =

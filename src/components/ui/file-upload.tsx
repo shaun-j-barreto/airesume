@@ -76,10 +76,8 @@ export const FileUpload = ({
           <GridPattern />
         </div>
         <div className="flex flex-col items-center justify-center ">
-          <p className="relative z-20 font-sans font-bold text-neutral-300 text-base">
-            Upload file
-          </p>
-          <p className="relative z-20 font-sans font-normal text-neutral-400 text-base mt-2">
+          <p className="relative z-20  text-orange-50 text-2xl">Upload file</p>
+          <p className="relative z-20 text-xl text-neutral-400  mt-2">
             Drop your resume(.pdf) here or click to upload
           </p>
           <div className="relative w-full mt-10 max-w-xl mx-auto ">
@@ -90,7 +88,7 @@ export const FileUpload = ({
                   layoutId={idx === 0 ? "file-upload" : "file-upload-" + idx}
                   className={cn(
                     "relative overflow-hidden z-40 bg-neutral-900 flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto",
-                    "shadow-sm"
+                    "shadow-sm",
                   )}
                 >
                   <div className="flex justify-between w-full items-center gap-4">
@@ -144,7 +142,7 @@ export const FileUpload = ({
                 }}
                 className={cn(
                   "relative group-hover/file:shadow-2xl z-40 bg-neutral-900 flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto",
-                  "shadow-[0px_10px_50px_rgba(0,0,0,0.1)]"
+                  "shadow-[0px_10px_50px_rgba(0,0,0,0.1)]",
                 )}
               >
                 {isDragActive ? (
@@ -165,7 +163,7 @@ export const FileUpload = ({
             {!files.length && (
               <motion.div
                 variants={secondaryVariant}
-                className="absolute opacity-0 border border-dashed border-purple-300 inset-0 z-30 bg-transparent flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto"
+                className="absolute opacity-0 border border-dashed border-orange-100 inset-0 z-30 bg-transparent flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto"
               ></motion.div>
             )}
           </div>
@@ -179,7 +177,7 @@ export function GridPattern() {
   const columns = 41;
   const rows = 11;
   return (
-    <div className="flex bg-purple-950 shrink-0 flex-wrap justify-center items-center gap-x-px gap-y-px  scale-105">
+    <div className="flex bg-gray-700 shrink-0 flex-wrap justify-center items-center gap-x-px gap-y-px  scale-105">
       {Array.from({ length: rows }).map((_, row) =>
         Array.from({ length: columns }).map((_, col) => {
           const index = row * columns + col;
@@ -193,7 +191,7 @@ export function GridPattern() {
               }`}
             />
           );
-        })
+        }),
       )}
     </div>
   );

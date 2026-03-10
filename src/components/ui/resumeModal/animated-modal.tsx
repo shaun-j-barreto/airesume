@@ -50,8 +50,8 @@ export const ModalTrigger = ({
   return (
     <button
       className={cn(
-        "px-8 py-2 rounded-xs text-white text-center relative overflow-hidden",
-        className
+        "px-8 py-2 rounded-xs text-gray-900 text-center relative overflow-hidden",
+        className,
       )}
       onClick={() => setOpen(true)}
     >
@@ -103,8 +103,8 @@ export const ModalBody = ({
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[95%] md:max-w-[60%] max-w-[95%]  bg-black/70 border-2 border-gray-500/30  rounded-xs relative z-50 flex flex-col flex-1 overflow-hidden",
-              className
+              "min-h-[50%] max-h-[95%] md:max-w-[60%] max-w-[95%]  bg-orange-50 border-2 border-gray-800/10 shadow-md rounded-xs relative z-50 flex flex-col flex-1 overflow-hidden",
+              className,
             )}
             initial={{
               opacity: 0,
@@ -160,7 +160,7 @@ export const ModalFooter = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex justify-end p-4 bg-black/60 z-100", className)}>
+    <div className={cn("flex justify-end p-4 bg-orange-50 z-100", className)}>
       {children}
     </div>
   );
@@ -180,7 +180,7 @@ const Overlay = ({ className }: { className?: string }) => {
         opacity: 0,
         backdropFilter: "blur(0px)",
       }}
-      className={`fixed inset-0 h-full w-full bg-transparent bg-opacity-50 z-50 ${className}`}
+      className={`fixed inset-0 h-full w-full bg-[#fffaf5] z-50 ${className}`}
     ></motion.div>
   );
 };
@@ -190,7 +190,7 @@ const CloseIcon = () => {
   return (
     <button
       onClick={() => setOpen(false)}
-      className="absolute md:top-4 top-2 md:right-4 right-2 group rounded-full"
+      className="absolute md:top-4 top-2 md:right-4 right-2 group"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +202,7 @@ const CloseIcon = () => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-black cursor-pointer bg-purple-300 h-6 w-6 rounded-xs hover:rounded-full p-0.5  transition duration-200"
+        className="text-orange-100 cursor-pointer bg-gray-900 h-6 w-6 rounded-xs p-0.5 "
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M18 6l-12 12" />
@@ -217,7 +217,7 @@ const CloseIcon = () => {
 export const useOutsideClick = (
   ref: React.RefObject<HTMLDivElement | null>,
   // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-  callback: Function
+  callback: Function,
 ) => {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
