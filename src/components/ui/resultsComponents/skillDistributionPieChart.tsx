@@ -6,12 +6,12 @@ const COLORS = ["#b946f2", "#acccff", "#fcb995", "#fc80d2"];
 export default function SkillDistributionPieChart() {
   const { data } = useResumeContext();
   return (
-    <div className="relative w-full h-[550px] bg-[#100120] hover:bg-[#1b1729] transition ease-in-out duration-400 border border-white/10 rounded-xl p-4">
+    <div className="relative w-full h-[550px] bg-background border-1 border-gray-800/10 hover:bg-orange-50 transition ease-in-out duration-400 shadow-sm rounded-xl p-4">
       <div className="flex items-center mb-6 w-full max-w-3xl m-auto">
-        <div className="bg-purple-300/10 rounded-full p-2 border border-purple-300/20 shadow-md flex items-center justify-center">
-          <ChartPie size={30} className="text-purple-300" />
+        <div className="bg-gray-800 rounded-full p-2 border shadow-md flex items-center justify-center">
+          <ChartPie size={30} className="text-orange-200" />
         </div>
-        <h2 className="text-purple-200 text-2xl font-semibold p-4 tracking-wide">
+        <h2 className="text-gray-900 text-2xl font-semibold p-4 tracking-wide">
           Skill Distribution
         </h2>
       </div>
@@ -28,7 +28,7 @@ export default function SkillDistributionPieChart() {
             cy="50%"
             innerRadius={80}
             outerRadius={140}
-            fill="#8884d8"
+            fill="#d8b484"
             paddingAngle={5}
             dataKey="value"
           >
@@ -41,7 +41,7 @@ export default function SkillDistributionPieChart() {
           </Pie>
         </PieChart>
       </ResponsiveContainer>
-      <div className="flex flex-wrap justify-center gap-2 md:gap-4 -mt-50 md:ml-25 m-10 text-sm text-purple-100">
+      <div className="flex flex-wrap justify-center gap-2 md:gap-4 -mt-50 md:ml-25 m-10 text-base text-gray-900">
         {data?.skillDistribution.map((entry, index) => (
           <div
             key={entry.name}
@@ -63,9 +63,9 @@ export default function SkillDistributionPieChart() {
 const PieTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-neutral-900 border border-purple-200/50 rounded-lg p-3 shadow-elevated">
+      <div className="bg-neutral-900 border border-orange-200/50 rounded-lg p-3 shadow-elevated">
         <p className="text-foreground font-medium">{payload[0].name}</p>
-        <p className="text-purple-300">
+        <p className="text-orange-300">
           <span className="font-semibold">{payload[0].value}%</span>
         </p>
       </div>

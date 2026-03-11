@@ -103,7 +103,7 @@ export const ModalBody = ({
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[95%] md:max-w-[60%] max-w-[95%]  bg-orange-50 border-2 border-gray-800/10 shadow-md rounded-xs relative z-50 flex flex-col flex-1 overflow-hidden",
+              "min-h-[50%] max-h-[95%] md:max-w-[60%] max-w-[95%]  bg-white border-2 border-gray-800/10 shadow-md rounded-sm relative z-50 flex flex-col flex-1 overflow-hidden",
               className,
             )}
             initial={{
@@ -160,7 +160,7 @@ export const ModalFooter = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex justify-end p-4 bg-orange-50 z-100", className)}>
+    <div className={cn("flex justify-end p-4 bg-white z-100", className)}>
       {children}
     </div>
   );
@@ -180,7 +180,7 @@ const Overlay = ({ className }: { className?: string }) => {
         opacity: 0,
         backdropFilter: "blur(0px)",
       }}
-      className={`fixed inset-0 h-full w-full bg-[#fffaf5] z-50 ${className}`}
+      className={`fixed inset-0 h-full w-full bg-white z-50 ${className}`}
     ></motion.div>
   );
 };
@@ -202,7 +202,7 @@ const CloseIcon = () => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-orange-100 cursor-pointer bg-gray-900 h-6 w-6 rounded-xs p-0.5 "
+        className="text-zinc-800 cursor-pointer bg-orange-300 h-6 w-6 rounded-xs p-0.5 "
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M18 6l-12 12" />

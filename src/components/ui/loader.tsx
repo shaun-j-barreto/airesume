@@ -4,7 +4,10 @@ import React from "react";
 
 export const LoaderFive = ({ text }: { text: string }) => {
   return (
-    <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_#3b0764,_#1e0e3e,_#0e0014)] flex justify-center items-center h-screen text-purple-100 font-sans font-bold">
+    /* Updated background: A warm radial gradient from a light peach to a soft sunset orange.
+       Updated text color: Using a deep orange-brown (orange-950) for contrast.
+    */
+    <div className="fixed bg-orange-50 w-full flex justify-center items-center h-screen text-black font-sans font-bold">
       <div className="flex flex-col items-center">
         <div>
           {text.split("").map((char, i) => (
@@ -29,8 +32,8 @@ export const LoaderFive = ({ text }: { text: string }) => {
             </motion.div>
           ))}
         </div>
-        <p className="md:text-lg text-sm text-center md:mt-4 mt-2 text-violet-200/70">
-          This may take up to a minute
+        <p className="md:text-lg text-sm text-center md:mt-4 mt-2 text-gray-900">
+          Analyzing your resume. This may take up to a minute
         </p>
       </div>
     </div>
