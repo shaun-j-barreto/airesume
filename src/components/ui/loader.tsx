@@ -32,8 +32,7 @@ export const LoaderFive = ({ text }: { text: string }) => {
             </motion.div>
           ))}
         </div>
-        {/* Updated subtext: Using a muted orange-brown that matches your text-primary style */}
-        <p className="md:text-lg text-sm text-center md:mt-4 mt-2 text-gray-900/60 font-medium">
+        <p className="md:text-lg text-sm text-center md:mt-4 mt-2 text-gray-900">
           Analyzing your resume. This may take up to a minute
         </p>
       </div>
