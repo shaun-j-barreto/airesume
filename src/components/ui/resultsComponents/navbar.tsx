@@ -11,7 +11,7 @@ export function Navbar() {
     year: "numeric",
   });
   return (
-    <nav className="bg-orange-200/10 backdrop-blur-xl border-b border-orange-100/20 p-4  fixed w-full top-0 left-0 z-50 shadow-lg">
+    <nav className="bg-background/10 backdrop-blur-xl border-b border-orange-100/20 p-4  fixed w-full top-0 left-0 z-50 shadow-lg">
       <div className="container mx-auto flex gap-5 items-center">
         <Link
           href="/"
@@ -21,7 +21,7 @@ export function Navbar() {
           Back to Upload
         </Link>
         <div className="flex-1 flex flex-col ">
-          <h1 className="text-orange-600 md:text-2xl text-lg font-bold">
+          <h1 className="text-gray-900 md:text-2xl text-lg font-bold">
             Resume Results
           </h1>
           <span className="text-xs text-gray-900">
