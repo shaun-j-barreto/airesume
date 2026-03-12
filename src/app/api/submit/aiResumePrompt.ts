@@ -4,8 +4,14 @@ export function resumePrompt(
   experience: string,
   domain: string,
   targetCompany: string,
-  jobDescription: string
+  jobDescription: string,
 ): string {
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return `You are a highly intelligent Expert ATS Resume Evaluator.
 
 You will be given:
@@ -16,6 +22,8 @@ You will be given:
 5. (Optional) A **target company** name.
 6. (Optional) A **job description** for the target role.
 
+note: I am providing the curent date to help you evaluate the resume. sometimes candidates include their experiece in a way that is not clear because of your knowledge cutoff, so you can use the current date to evaluate the experience level of the candidate based on the dates mentioned in the resume.
+today's date: ${currentDate}
 ---
 
 🎯 **Your objective** is to:

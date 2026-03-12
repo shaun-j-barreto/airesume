@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     console.log(role, experience, domain, targetCompany, jobDescription);
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3-flash-preview",
       contents: prompt,
       generationConfig: {
         temperature: 0.2,
