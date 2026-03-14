@@ -126,15 +126,13 @@ export function AnalyzeResumeModal() {
               <div className="flex flex-col col-span-2 md:col-span-1">
                 <label
                   htmlFor="role"
-                  // Changed to text-gray-900
-                  className="text-gray-900 text-sm mb-0.5 font-medium"
+                  className="text-gray-900 text-sm md:text-base mb-0.5 font-medium"
                 >
                   Job Role / Position
                 </label>
                 <input
                   id="role"
-                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
-                  className="bg-zinc-800 px-2 py-1 text-orange-50 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  className="bg-white px-3 py-2 text-zinc-900 text-sm md:text-base md:mb-1.5 mb-2 rounded-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
                   placeholder="e.g. Software Engineer, Data Scientist"
                   onChange={(e) => setRole(e.target.value)}
                 />
@@ -142,15 +140,13 @@ export function AnalyzeResumeModal() {
               <div className="flex flex-col col-span-2 md:col-span-1">
                 <label
                   htmlFor="experience"
-                  // Changed to text-gray-900
-                  className="text-gray-900 text-sm mb-0.5 font-medium"
+                  className="text-gray-900 text-sm md:text-base mb-0.5 font-medium"
                 >
                   Job Experience
                 </label>
                 <input
                   id="experience"
-                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
-                  className="bg-zinc-800 px-2 py-1 text-orange-50 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  className="bg-white px-3 py-2 text-zinc-900 text-sm md:text-base md:mb-1.5 mb-2 rounded-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
                   placeholder="e.g. 1, 3, 5 years"
                   onChange={(e) => setExperience(e.target.value)}
                 />
@@ -158,15 +154,13 @@ export function AnalyzeResumeModal() {
               <div className="flex flex-col col-span-2 md:col-span-1">
                 <label
                   htmlFor="domain"
-                  // Changed to text-gray-900
-                  className="text-gray-900 text-sm mb-0.5 font-medium"
+                  className="text-gray-900 text-sm md:text-base mb-0.5 font-medium"
                 >
                   Industry / Domain
                 </label>
                 <input
                   id="domain"
-                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
-                  className="bg-zinc-800 px-2 py-1 text-orange-50 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  className="bg-white px-3 py-2 text-zinc-900 text-sm md:text-base md:mb-1.5 mb-2 rounded-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
                   placeholder="e.g. Finance, Healthcare, Tech"
                   onChange={(e) => setDomain(e.target.value)}
                 />
@@ -174,15 +168,13 @@ export function AnalyzeResumeModal() {
               <div className="flex flex-col col-span-2 md:col-span-1">
                 <label
                   htmlFor="targetCompany"
-                  // Changed to text-gray-900
-                  className="text-gray-900 text-sm mb-0.5 font-medium"
+                  className="text-gray-900 text-sm md:text-base mb-0.5 font-medium"
                 >
                   Target Company (optional)
                 </label>
                 <input
                   id="targetCompany"
-                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
-                  className="bg-zinc-800 px-2 py-1 text-orange-50 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  className="bg-white px-3 py-2 text-zinc-900 text-sm md:text-base md:mb-1.5 mb-2 rounded-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
                   placeholder="e.g. Google, Amazon"
                   onChange={(e) => setTargetCompany(e.target.value)}
                 />
@@ -190,15 +182,13 @@ export function AnalyzeResumeModal() {
               <div className="flex flex-col col-span-2">
                 <label
                   htmlFor="jobDescription"
-                  // Changed to text-gray-900
-                  className="text-gray-900 text-sm mb-0.5 font-medium"
+                  className="text-gray-900 text-sm md:text-base mb-0.5 font-medium"
                 >
                   Job Description (optional)
                 </label>
                 <textarea
                   id="jobDescription"
-                  // Removed border, changed bg to bg-orange-200, text to text-gray-700
-                  className="bg-zinc-800 px-2 py-1 text-orange-50 text-sm md:mb-1.5 mb-2 rounded-sm focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  className="bg-white px-3 py-2 text-zinc-900 text-sm md:text-base md:mb-1.5 mb-2 rounded-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
                   placeholder="e.g. Responsibilities, requirements, skills..."
                   onChange={(e) => setJobDescription(e.target.value)}
                 />
@@ -226,7 +216,7 @@ function CancelButton() {
     <button
       type="button"
       onClick={() => setOpen(false)}
-      className="cursor-pointer px-2 py-1 bg-zinc-800 text-orange-50   transition duration-200 hover:scale-105 rounded-xs text-sm w-28"
+      className="cursor-pointer px-2 py-1 bg-zinc-800 text-orange-50   transition duration-200 hover:scale-105 rounded-xs text-sm md:text-base w-28"
     >
       Cancel
     </button>
@@ -238,7 +228,7 @@ function StartButton({ handleData }: { handleData: () => void }) {
 
   return (
     <button
-      className="cursor-pointer bg-orange-300 text-gray-900  text-sm px-2 py-1 rounded-xs  w-28 hover:scale-105 transition duration-200"
+      className="cursor-pointer bg-orange-300 text-gray-900  text-sm md:text-base px-2 py-1 rounded-xs  w-28 hover:scale-105 transition duration-200"
       onClick={() => {
         clearData();
         handleData();
