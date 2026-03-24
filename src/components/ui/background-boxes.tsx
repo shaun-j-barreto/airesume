@@ -4,16 +4,16 @@ import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
-  const rows = new Array(150).fill(1);
-  const cols = new Array(100).fill(1);
+  // Reduced count for better performance and "bigger" feel
+  const rows = new Array(20).fill(1);
+  const cols = new Array(20).fill(1);
 
-  // Updated to warm, vibrant orange shades for the hover effect
   const colors = [
-    "#ffedd5", // orange-100
     "#fed7aa", // orange-200
     "#fdba74", // orange-300
     "#fb923c", // orange-400
     "#f97316", // orange-500
+    "#ea580c", // orange-600 (for a deeper "hit" on hover)
   ];
 
   const getRandomColor = () => {
@@ -23,10 +23,10 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
   return (
     <div
       style={{
-        transform: `translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675) rotate(0deg) translateZ(0)`,
+        transform: `translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(1) rotate(0deg) translateZ(0)`,
       }}
       className={cn(
-        "absolute -top-1/4 left-1/4 z-0 flex h-full w-full -translate-x-1/2 -translate-y-1/2 p-4",
+        "absolute -top-1/4 left-1/4 z-0 flex h-full w-full p-4",
         className,
       )}
       {...rest}
@@ -34,8 +34,8 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
       {rows.map((_, i) => (
         <motion.div
           key={`row` + i}
-          // Changed border color to a soft orange-slate mix for a "ghost" grid look
-          className="relative h-20 w-32 border-l border-orange-200/50"
+          // Increased height/width from h-20 w-32 to h-48 w-64
+          className="relative h-48 w-64 border-l border-orange-200/50"
         >
           {cols.map((_, j) => (
             <motion.div
@@ -47,8 +47,8 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
                 transition: { duration: 2 },
               }}
               key={`col` + j}
-              // Changed top/right borders to match the light theme
-              className="relative h-20 w-32 border-t border-r border-orange-200/50"
+              // Match height/width here
+              className="relative h-48 w-64 border-t border-r border-orange-200/50"
             >
               {j % 2 === 0 && i % 2 === 0 ? (
                 <svg
@@ -57,8 +57,8 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  // Changed plus icons to a slightly darker orange-tinted gray
-                  className="pointer-events-none absolute -top-[14px] -left-[22px] h-6 w-10 stroke-[1px] text-orange-300/60"
+                  // Adjusted positioning for larger scale
+                  className="pointer-events-none absolute -top-[12px] -left-[12px] h-6 w-6 stroke-[1px] text-orange-300/60"
                 >
                   <path
                     strokeLinecap="round"
