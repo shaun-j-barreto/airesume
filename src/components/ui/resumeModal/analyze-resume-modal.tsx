@@ -195,7 +195,7 @@ export function AnalyzeResumeModal() {
               </div>
             </div>
             {/* Updated the FileUpload container to match the light orange theme */}
-            <div className="w-full max-w-4xl mx-auto min-h-80 border bg-zinc-700 mt-4 rounded-md">
+            <div className="w-full max-w-4xl mx-auto min-h-80 border-2 border-dashed border-zinc-400 bg-white mt-4 rounded-md">
               <FileUpload onChange={(files) => setFiles(files)} />
             </div>
           </ModalContent>

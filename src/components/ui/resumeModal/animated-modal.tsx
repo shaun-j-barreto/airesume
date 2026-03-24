@@ -85,48 +85,28 @@ export const ModalBody = ({
     <AnimatePresence>
       {open && (
         <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            backdropFilter: "blur(10px)",
-          }}
-          exit={{
-            opacity: 0,
-            backdropFilter: "blur(0px)",
-          }}
-          className="fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-100"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          // Removed expensive 3D perspective classes
+          className="fixed inset-0 h-full w-full flex items-center justify-center z-100"
         >
           <Overlay />
 
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[95%] md:max-w-[60%] max-w-[95%]  bg-white border-2 border-gray-800/10 shadow-md rounded-sm relative z-50 flex flex-col flex-1 overflow-hidden",
+              "min-h-[50%] max-h-[95%] md:max-w-[60%] max-w-[95%] bg-white border-2 border-gray-800/10 shadow-md rounded-sm relative z-50 flex flex-col flex-1 overflow-hidden",
               className,
             )}
-            initial={{
-              opacity: 0,
-              scale: 0.5,
-              rotateX: 40,
-              y: 40,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              rotateX: 0,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              scale: 0.8,
-              rotateX: 10,
-            }}
+            // Replaced rotateX and deep scaling with performant 2D translations
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{
               type: "spring",
-              stiffness: 260,
-              damping: 15,
+              stiffness: 300,
+              damping: 24,
             }}
           >
             <CloseIcon />
@@ -169,18 +149,11 @@ export const ModalFooter = ({
 const Overlay = ({ className }: { className?: string }) => {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-        backdropFilter: "blur(10px)",
-      }}
-      exit={{
-        opacity: 0,
-        backdropFilter: "blur(0px)",
-      }}
-      className={`fixed inset-0 h-full w-full bg-white z-50 ${className}`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      // Applied blur as a static CSS class rather than an animated property
+      className={`fixed inset-0 h-full w-full bg-white/50 backdrop-blur-md z-50 ${className}`}
     ></motion.div>
   );
 };
@@ -202,7 +175,7 @@ const CloseIcon = () => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-zinc-800 cursor-pointer bg-orange-300 h-6 w-6 rounded-xs p-0.5 "
+        className="text-zinc-800 cursor-pointer bg-orange-300 h-6 w-6 rounded-full p-1 "
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M18 6l-12 12" />
@@ -212,8 +185,6 @@ const CloseIcon = () => {
   );
 };
 
-// Hook to detect clicks outside of a component.
-// Add it in a separate file, I've added here for simplicity
 export const useOutsideClick = (
   ref: React.RefObject<HTMLDivElement | null>,
   // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
@@ -222,7 +193,6 @@ export const useOutsideClick = (
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const listener = (event: any) => {
-      // DO NOTHING if the element being clicked is the target element or their children
       if (!ref.current || ref.current.contains(event.target)) {
         return;
       }

@@ -75,13 +75,12 @@ export const FileUpload = ({
           className="hidden"
         />
         <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
-          <GridPattern />
         </div>
         <div className="flex flex-col items-center justify-center ">
-          <p className="relative z-20 font-bold text-orange-50 text-2xl">
+          <p className="relative z-20 font-bold text-zinc-700 text-3xl">
             {files.length > 0 ? "File Ready" : "Upload file"}
           </p>
-          <p className="relative z-20 text-base text-gray-400 mt-2">
+          <p className="relative z-20 text-base text-gray-600 mt-2">
             {files.length > 0
               ? "Click the 'X' to change your file"
               : "Drop your resume (.pdf) here or click to upload"}
@@ -94,7 +93,7 @@ export const FileUpload = ({
                   key={"file" + idx}
                   layoutId={idx === 0 ? "file-upload" : "file-upload-" + idx}
                   className={cn(
-                    "relative overflow-hidden z-40 bg-zinc-800 border border-gray-500/10 flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md shadow-sm",
+                    "relative overflow-hidden z-40  border-2 border-gray-500/10 flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md shadow-sm",
                   )}
                 >
                   <div className="flex justify-between w-full items-center gap-4">
@@ -102,7 +101,7 @@ export const FileUpload = ({
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       layout
-                      className="text-base text-orange-50 font-semibold truncate max-w-xs"
+                      className="text-base text-zinc-700 font-semibold truncate max-w-xs"
                     >
                       {file.name}
                     </motion.p>
@@ -112,7 +111,7 @@ export const FileUpload = ({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         layout
-                        className="px-2 py-1 w-fit shrink-0 text-xs bg-orange-100 text-orange-800 rounded-sm"
+                        className="px-2 py-1 w-fit shrink-0 text-xs  bg-orange-100 text-orange-800 rounded-sm"
                       >
                         {(file.size / (1024 * 1024)).toFixed(2)} MB
                       </motion.p>
@@ -120,7 +119,7 @@ export const FileUpload = ({
                       {/* REMOVE BUTTON */}
                       <button
                         onClick={removeFile}
-                        className="p-1 cursor-pointer hover:bg-orange-100 text-gray-400 hover:text-gray-900 rounded-full transition-colors"
+                        className="p-1 cursor-pointer bg-orange-300  hover:bg-orange-200 text-gray-900 hover:text-gray-900 rounded-full transition-colors"
                         title="Remove file"
                       >
                         <IconX className="h-5 w-5" />
@@ -128,12 +127,12 @@ export const FileUpload = ({
                     </div>
                   </div>
 
-                  <div className="flex text-xs md:flex-row flex-col items-start md:items-center w-full mt-2 justify-between text-gray-500">
+                  <div className="flex text-xs md:flex-row flex-col items-start md:items-center w-full mt-2 justify-between text-black">
                     <motion.p
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       layout
-                      className="px-1 py-0.5 bg-orange-50 rounded-xs"
+                      className="px-1 py-0.5 bg-zinc-200 rounded-xs"
                     >
                       PDF Document
                     </motion.p>
@@ -160,7 +159,7 @@ export const FileUpload = ({
                   damping: 20,
                 }}
                 className={cn(
-                  "relative group-hover/file:shadow-xl z-40 bg-zinc-900 border border-gray-300/20 flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-lg shadow-sm",
+                  "relative group-hover/file:shadow-xl z-40 bg-orange-300 border border-gray-300/20 flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-lg shadow-sm",
                 )}
               >
                 {isDragActive ? (
@@ -173,7 +172,7 @@ export const FileUpload = ({
                     <IconUpload className="h-6 w-6" />
                   </motion.p>
                 ) : (
-                  <IconUpload className="h-6 w-6 text-orange-100" />
+                  <IconUpload className="h-6 w-6 text-black" />
                 )}
               </motion.div>
             )}
@@ -181,7 +180,7 @@ export const FileUpload = ({
             {!files.length && (
               <motion.div
                 variants={secondaryVariant}
-                className="absolute opacity-0 border border-dashed border-orange-100 inset-0 z-30 bg-transparent flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-lg"
+                className="absolute opacity-0 border border-dashed border-orange-300 inset-0 z-30 bg-transparent flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-lg"
               ></motion.div>
             )}
           </div>
@@ -190,30 +189,3 @@ export const FileUpload = ({
     </div>
   );
 };
-
-export function GridPattern() {
-  const columns = 41;
-
-  const rows = 11;
-
-  return (
-    <div className="flex bg-gray-700 shrink-0 flex-wrap justify-center items-center gap-x-px gap-y-px  scale-105">
-      {Array.from({ length: rows }).map((_, row) =>
-        Array.from({ length: columns }).map((_, col) => {
-          const index = row * columns + col;
-
-          return (
-            <div
-              key={`${col}-${row}`}
-              className={`w-10 h-10 flex shrink-0 ${
-                index % 2 === 0
-                  ? "bg-neutral-950"
-                  : "bg-neutral-950 shadow-[0px_0px_1px_3px_rgba(0,0,0,1)_inset]"
-              }`}
-            />
-          );
-        }),
-      )}
-    </div>
-  );
-}
